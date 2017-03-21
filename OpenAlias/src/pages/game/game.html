@@ -1,0 +1,8 @@
+<ion-content padding>
+    <h3>Game is in progress...</h3>
+    
+    <ion-list>
+        <button ion-button [color]="word.checked ? 'dark' : 'light'" full *ngFor="let word of words" (click)="itemChecked(word)">{{word.word}}</button>
+    </ion-list>
+
+</ion-content>
