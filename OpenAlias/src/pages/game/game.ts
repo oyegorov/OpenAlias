@@ -9,9 +9,9 @@ import { GameService } from '../../providers/game-service';
     templateUrl: 'game.html'
 })
 export class Game {
-    selectedItem: any;
-    icons: string[];
-    items: Array<{ title: string, note: string, icon: string }>;
+
+    public timeLeft: number = 20;
+
     words: any[];
 
     constructor(public navCtrl: NavController, public gameService: GameService) {
@@ -31,6 +31,14 @@ export class Game {
                     checked: false
                 });
         }
+
+        var timer = setInterval(() => {
+            if (this.timeLeft != 0) {
+                this.timeLeft -= 1;
+            } else {
+                clearInterval(timer);
+            }
+        }, 1000);
     }
 
     itemChecked(item) {
