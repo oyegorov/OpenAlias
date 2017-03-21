@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import { Dictionary, dictionaries } from "../data/dictionaries"
 
 /*
   Generated class for the GameService provider.
@@ -13,17 +14,28 @@ import 'rxjs/add/operator/map';
 export class GameService {
     private words: string[];
 
-  constructor(public http: Http) {
-      console.log('Hello GameService Provider');
+    constructor() {
+    }
 
-      this.words = [];
+    getWords(): string[] {
+        let dictionary: Dictionary = dictionaries[0];
+        this.words = this.shuffle(dictionary.words).slice(0, 7);
 
-      this.words.push("aaaaa");
-      this.words.push("bbb");
-      this.words.push("cccc");
-  }
+        return this.words;
+    };
 
-  getWords(): string[] {
-      return this.words;
-  };
+    shuffle(array: any[]) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
 }
