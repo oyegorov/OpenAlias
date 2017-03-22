@@ -28,6 +28,7 @@ export class Game {
 
     ionViewDidLoad() {
 
+        this.words = [];
         this.wordService.useDictionaries([1, 2, 3, 4]);
 
         this.wordsPerPage = this.gameSettingsService.getSettings().wordsPerPage;
@@ -44,22 +45,26 @@ export class Game {
     }
 
     itemChecked(item) {
+
+        if (item.checked)
+            return;
+
         item.checked = true;
 
-        if (this.wordsCheckedCount < this.wordsPerPage) {
-            this.wordsCheckedCount++;
-            return;
-        }
+        this.wordsCheckedCount++;
 
-        this.initializeWords();
+        if (this.wordsCheckedCount === this.wordsPerPage) {
+            this.initializeWords();
+        }
     }
 
     initializeWords(): void {
 
-        this.words = [];
         this.wordsCheckedCount = 0;
 
         let words = this.wordService.getWords(this.wordsPerPage);
+
+        this.words = [];
 
         for (let i = 0; i < words.length; i++) {
             this.words.push(
