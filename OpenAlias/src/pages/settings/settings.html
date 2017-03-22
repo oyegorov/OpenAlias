@@ -7,7 +7,7 @@
     <ion-list>
         <ion-item>
             <ion-label>Round time</ion-label>
-            <ion-select>
+            <ion-select [(ngModel)]="settings.roundDuration">
                 <ion-option value="15">15 seconds</ion-option>
                 <ion-option value="30">30 seconds</ion-option>
                 <ion-option value="45">45 seconds</ion-option>
@@ -18,7 +18,7 @@
         </ion-item>
         <ion-item>
             <ion-label>Words per page</ion-label>
-            <ion-select>
+            <ion-select [(ngModel)]="settings.wordsPerPage">
                 <ion-option value="1">One</ion-option>
                 <ion-option value="2">Two</ion-option>
                 <ion-option value="3">Three</ion-option>

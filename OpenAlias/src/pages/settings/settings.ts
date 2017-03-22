@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { GameSettingsService } from '../../providers/game-settings-service';
+import { Settings } from '../../model/settings';
 
-/*
-  Generated class for the Settings page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html'
+    selector: 'page-settings',
+    templateUrl: 'settings.html'
 })
 export class SettingsPage {
+    settings: Settings;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    constructor(private gameSettingsService: GameSettingsService) {
+        this.settings = this.gameSettingsService.getSettings();
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
-  }
+    ionViewDidLoad() {
+    }
 
+    onPageWillLeave() {
+        this.gameSettingsService.setSettings(this.settings);
+    }
 }
