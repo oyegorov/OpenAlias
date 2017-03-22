@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Game } from '../pages/game/game';
 import { GameMenu } from '../pages/game-menu/game-menu';
+import { GameInfoPage } from '../pages/game-info/game-info';
 import { SettingsPage } from "../pages/settings/settings";
 
 import { GameService } from '../providers/game-service';
@@ -13,6 +14,7 @@ import { WordService } from '../providers/word-service';
     declarations: [
         MyApp,
         GameMenu,
+        GameInfoPage,
         Game,
         SettingsPage
     ],
@@ -23,6 +25,7 @@ import { WordService } from '../providers/word-service';
     entryComponents: [
         MyApp,
         GameMenu,
+        GameInfoPage,
         Game,
         SettingsPage
     ],
