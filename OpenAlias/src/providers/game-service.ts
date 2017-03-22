@@ -13,17 +13,6 @@ export class GameService {
     private currentPlayerIndex: number;
 
     constructor() {
-        let player1: Player =
-        {
-            name: "Yegorov"
-            };
-
-        let player2: Player =
-        {
-            name: "Olsher"
-        };
-
-        this.startGame([player1, player2]);
     }
 
     startGame(players: Player[]) {

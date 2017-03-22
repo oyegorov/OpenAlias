@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Player } from "../../model/player";
+import { GameService } from "../../providers/game-service";
+import { GameInfoPage } from "../game-info/game-info";
 
 @Component({
     selector: 'page-teams',
@@ -10,7 +13,7 @@ export class TeamsPage {
     private allTeamNames: string[] = ['Push Keen', 'Moo Ducks', 'Chromed Dogs', 'Suicide Squad', 'Climbing Monsters', 'Deam More Awes', 'Copy-Paste Ninjas', 'Jumping Monkeys', 'Ghostbusters'];
     private availableTeams;
 
-    constructor() {
+    constructor(private gameService: GameService, private navCtrl: NavController, private navParams: NavParams) {
         this.availableTeams = this.allTeamNames.slice();
         this.addTeam();
         this.addTeam();
@@ -18,6 +21,22 @@ export class TeamsPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad TeamsPage');
+    }
+
+    public startGame() {
+        let players: Player[] = [];
+
+        this.selectedTeams.forEach((team) => {
+            let player: Player =
+                {
+                    name: team
+                };
+            players.push(player);
+        });
+
+        this.gameService.startGame(players);
+
+        this.navCtrl.setRoot(GameInfoPage);
     }
 
     public addTeam() {
