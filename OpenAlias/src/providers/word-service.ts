@@ -54,10 +54,10 @@ export class WordService {
         return words;
     }
 
-    private shuffle(array: any[]) {
+    shuffle(array: any[]) {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
-        while (currentIndex != null) {
+        while (currentIndex !== 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
 

@@ -28,7 +28,7 @@ export class Game {
 
         this.words = [];
 
-        this.wordService.useDictionaries([1]);
+        this.wordService.useDictionaries([1, 2, 3, 4]);
 
         let words = this.wordService.getWords(5);
 
