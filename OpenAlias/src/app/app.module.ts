@@ -4,7 +4,8 @@ import { MyApp } from './app.component';
 import { Game } from '../pages/game/game';
 import { GameMenu } from '../pages/game-menu/game-menu';
 
-import { GameService} from '../providers/game-service'
+import { GameService } from '../providers/game-service'
+import { GameSettingsService } from '../providers/game-settings-service'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,6 @@ import { GameService} from '../providers/game-service'
     GameMenu,
     Game
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GameService]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, GameService, GameSettingsService]
 })
 export class AppModule {}
