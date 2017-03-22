@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { GameService } from '../../providers/game-service';
-import { GameSettingsService } from '../../providers/game-settings-service'
+import { GameSettingsService } from '../../providers/game-settings-service';
+import { WordService } from '../../providers/word-service';
 
 @Component({
     selector: 'game-page',
@@ -17,7 +18,8 @@ export class Game {
 
     constructor(public navCtrl: NavController,
         private gameService: GameService,
-        private gameSettingsService: GameSettingsService) {
+        private gameSettingsService: GameSettingsService,
+        private wordService: WordService) {
 
         this.timeLeft = gameSettingsService.getSettings().roundDuration;
     }
@@ -26,7 +28,9 @@ export class Game {
 
         this.words = [];
 
-        let words = this.gameService.getWords();
+        this.wordService.useDictionaries([1]);
+
+        let words = this.wordService.getWords(5);
 
         for (let i = 0; i < words.length; i++) {
             this.words.push(
