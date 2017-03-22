@@ -12,7 +12,9 @@ import { WordService } from '../../providers/word-service';
 })
 export class Game {
 
-    public timeLeft: number = 20;
+    private timeLeft: number;
+    private wordsPerPage: number;
+    private wordsCheckedCount: number;
 
     words: any[];
 
@@ -26,19 +28,11 @@ export class Game {
 
     ionViewDidLoad() {
 
-        this.words = [];
-
         this.wordService.useDictionaries([1, 2, 3, 4]);
 
-        let words = this.wordService.getWords(5);
+        this.wordsPerPage = this.gameSettingsService.getSettings().wordsPerPage;
 
-        for (let i = 0; i < words.length; i++) {
-            this.words.push(
-                {
-                    word: words[i],
-                    checked: false
-                });
-        }
+        this.initializeWords();
 
         var timer = setInterval(() => {
             if (this.timeLeft !== 0) {
@@ -50,7 +44,29 @@ export class Game {
     }
 
     itemChecked(item) {
-        console.log(item);
         item.checked = true;
+
+        if (this.wordsCheckedCount < this.wordsPerPage) {
+            this.wordsCheckedCount++;
+            return;
+        }
+
+        this.initializeWords();
+    }
+
+    initializeWords(): void {
+
+        this.words = [];
+        this.wordsCheckedCount = 0;
+
+        let words = this.wordService.getWords(this.wordsPerPage);
+
+        for (let i = 0; i < words.length; i++) {
+            this.words.push(
+                {
+                    word: words[i],
+                    checked: false
+                });
+        }
     }
 }
