@@ -1,9 +1,17 @@
-﻿export interface Dictionary {
-	description: string;
-	difficulty: string;
-	language: string;
-	name: string;
-	words: string[];
+﻿export class DictionaryInfo {
+    public id: number;
+    public description: string;
+    public difficulty: string;
+    public language: string;
+    public name: string;
+}
+
+export class Dictionary {
+    public description: string;
+    public difficulty: string;
+    public language: string;
+    public name: string;
+    public words: string[];
 }
 
 export let dictionaries: Dictionary[] = [
