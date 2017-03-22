@@ -13,8 +13,6 @@ export class GameService {
     private currentPlayerIndex: number;
 
     constructor() {
-        this.playerScores = [];
-
         let player1: Player =
         {
             name: "Yegorov"
@@ -25,14 +23,18 @@ export class GameService {
             name: "Olsher"
         };
 
-        let ps1: PlayerScores = new PlayerScores(player1);
-        let ps2: PlayerScores = new PlayerScores(player2);
+        this.startGame([player1, player2]);
+    }
 
-        ps1.isActive = true;
+    startGame(players: Player[]) {
+        this.playerScores = [];
         this.currentPlayerIndex = 0;
 
-        this.playerScores.push(ps1);
-        this.playerScores.push(ps2);
+        players.forEach((player, index) => {
+            let ps = new PlayerScores(player);
+            ps.isActive = (index === 0);
+            this.playerScores.push(ps);
+        });
     }
 
     getPlayerScores(): PlayerScores[]
