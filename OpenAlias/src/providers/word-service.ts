@@ -46,6 +46,7 @@ export class WordService {
 
     public getWords(n: number): string[] {
         if (this.wordPointer + n > this.wordPool.length) {
+            console.info('Not enough words in the word pool');
             return [];
         }
 
