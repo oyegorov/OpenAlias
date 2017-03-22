@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { GameService } from '../../providers/game-service';
+import { GameSettingsService } from '../../providers/game-settings-service'
 
 @Component({
     selector: 'game-page',
@@ -14,8 +15,11 @@ export class Game {
 
     words: any[];
 
-    constructor(public navCtrl: NavController, public gameService: GameService) {
-       
+    constructor(public navCtrl: NavController,
+        private gameService: GameService,
+        private gameSettingsService: GameSettingsService) {
+
+        this.timeLeft = gameSettingsService.getSettings().roundDuration;
     }
 
     ionViewDidLoad() {
@@ -33,7 +37,7 @@ export class Game {
         }
 
         var timer = setInterval(() => {
-            if (this.timeLeft != 0) {
+            if (this.timeLeft !== 0) {
                 this.timeLeft -= 1;
             } else {
                 clearInterval(timer);
