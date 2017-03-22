@@ -50,7 +50,7 @@ export class WordService {
             return [];
         }
 
-        let words = this.wordPool.slice(this.wordPointer, n);
+        let words = this.wordPool.slice(this.wordPointer, this.wordPointer + n);
         this.wordPointer += n;
         return words;
     }
