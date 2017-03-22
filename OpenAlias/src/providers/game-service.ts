@@ -4,38 +4,44 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Dictionary, dictionaries } from "../data/dictionaries"
 
-/*
-  Generated class for the GameService provider.
+import { Player } from "../model/player";
+import { PlayerScores } from "../model/playerScores";
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class GameService {
-    private words: string[];
+    private playerScores: PlayerScores[];
 
     constructor() {
+        this.playerScores = [];
+
+        let player1: Player =
+        {
+            name: "Yegorov"
+            };
+
+        let player2: Player =
+        {
+            name: "Olsher"
+        };
+
+        let ps1: PlayerScores =
+        {
+            player: player1,
+            score: []
+        };
+
+        let ps2: PlayerScores =
+        {
+            player: player2,
+            score: []
+            };
+
+        this.playerScores.push(ps1);
+        this.playerScores.push(ps2);
     }
 
-    getWords(): string[] {
-        let dictionary: Dictionary = dictionaries[0];
-        this.words = this.shuffle(dictionary.words).slice(0, 7);
-
-        return this.words;
-    };
-
-    shuffle(array: any[]) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        while (0 !== currentIndex) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
+    getPlayerScores(): PlayerScores[]
+    {
+        return this.playerScores;
     }
 }

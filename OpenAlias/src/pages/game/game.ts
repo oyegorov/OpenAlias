@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 
+import {GameInfoPage} from '../game-info/game-info';
+
 import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
 import { WordService } from '../../providers/word-service';
@@ -22,11 +24,11 @@ export class Game {
         private gameService: GameService,
         private gameSettingsService: GameSettingsService,
         private wordService: WordService) {
-
-        this.timeLeft = gameSettingsService.getSettings().roundDuration;
     }
 
     ionViewDidLoad() {
+
+        this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
         this.words = [];
         this.wordService.useDictionaries([1, 2, 3, 4]);
@@ -40,6 +42,7 @@ export class Game {
                 this.timeLeft -= 1;
             } else {
                 clearInterval(timer);
+                this.navCtrl.setRoot(GameInfoPage);
             }
         }, 1000);
     }

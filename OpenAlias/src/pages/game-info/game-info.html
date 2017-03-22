@@ -1,0 +1,19 @@
+<!--
+  Generated template for the GameInfo page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+    <ion-list>
+        
+        <p>Current Score:</p>
+
+        <ion-label *ngFor="let playerScore of playerScores">{{playerScore.player.name}}</ion-label>
+        
+        <button ion-button full (click)="startRound()" >Start</button>
+
+    </ion-list>
+
+</ion-content>
