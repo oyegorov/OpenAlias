@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Game } from "../game/game";
+import { SettingsPage } from "../settings/settings";
 
 /*
   Generated class for the GameMenu page.
@@ -18,6 +19,10 @@ export class GameMenu {
 
     startGame() {
         this.navCtrl.setRoot(Game);
+    }
+
+    openSettings() {
+        this.navCtrl.push(SettingsPage);
     }
 
     exitGame() {
