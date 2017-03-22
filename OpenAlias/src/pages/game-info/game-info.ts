@@ -15,6 +15,7 @@ import { Game } from "../game/game";
 })
 export class GameInfoPage {
     playerScores: PlayerScores[];
+    activePlayer: Player = new Player();
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
@@ -22,6 +23,7 @@ export class GameInfoPage {
 
   ionViewDidLoad() {
       this.playerScores = this.gameService.getPlayerScores();
+      this.activePlayer = this.gameService.getActivePlayer();
   }
 
   startRound() {

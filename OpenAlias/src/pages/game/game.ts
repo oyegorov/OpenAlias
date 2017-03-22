@@ -17,6 +17,7 @@ export class Game {
     private timeLeft: number;
     private wordsPerPage: number;
     private wordsCheckedCount: number;
+    private totalWordsCheckedCount: number;
 
     words: any[];
 
@@ -28,6 +29,7 @@ export class Game {
 
     ionViewDidLoad() {
 
+        this.totalWordsCheckedCount = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
         this.words = [];
@@ -42,7 +44,13 @@ export class Game {
                 this.timeLeft -= 1;
             } else {
                 clearInterval(timer);
+
+                this.totalWordsCheckedCount += this.wordsCheckedCount;
+
+                this.gameService.addScore(this.totalWordsCheckedCount);
+                this.gameService.changePlayer();
                 this.navCtrl.setRoot(GameInfoPage);
+                
             }
         }, 1000);
     }
@@ -57,6 +65,7 @@ export class Game {
         this.wordsCheckedCount++;
 
         if (this.wordsCheckedCount === this.wordsPerPage) {
+            this.totalWordsCheckedCount += this.wordsCheckedCount;
             this.initializeWords();
         }
     }

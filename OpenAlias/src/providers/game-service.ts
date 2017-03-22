@@ -10,6 +10,7 @@ import { PlayerScores } from "../model/playerScores";
 @Injectable()
 export class GameService {
     private playerScores: PlayerScores[];
+    private currentPlayerIndex: number;
 
     constructor() {
         this.playerScores = [];
@@ -24,17 +25,11 @@ export class GameService {
             name: "Olsher"
         };
 
-        let ps1: PlayerScores =
-        {
-            player: player1,
-            score: []
-        };
+        let ps1: PlayerScores = new PlayerScores(player1);
+        let ps2: PlayerScores = new PlayerScores(player2);
 
-        let ps2: PlayerScores =
-        {
-            player: player2,
-            score: []
-            };
+        ps1.isActive = true;
+        this.currentPlayerIndex = 0;
 
         this.playerScores.push(ps1);
         this.playerScores.push(ps2);
@@ -43,5 +38,26 @@ export class GameService {
     getPlayerScores(): PlayerScores[]
     {
         return this.playerScores;
+    }
+
+    addScore(score:number) {
+        this.playerScores[this.currentPlayerIndex].addScore(score);
+    }
+
+    changePlayer() {
+        this.playerScores[this.currentPlayerIndex].isActive = false;
+
+        if (this.currentPlayerIndex + 1 === this.playerScores.length) {
+            this.currentPlayerIndex = 0;
+        } else {
+            this.currentPlayerIndex++;
+        }
+
+        this.playerScores[this.currentPlayerIndex].isActive = true;
+
+    }
+
+    getActivePlayer(): Player {
+        return this.playerScores[this.currentPlayerIndex].player;
     }
 }

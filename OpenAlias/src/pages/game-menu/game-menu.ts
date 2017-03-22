@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Game } from "../game/game";
+import { GameInfoPage } from "../game-info/game-info";
 import { SettingsPage } from "../settings/settings";
 import { TeamsPage } from "../teams/teams";
 
@@ -19,7 +20,7 @@ export class GameMenu {
     constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
     startGame() {
-        this.navCtrl.setRoot(Game);
+        this.navCtrl.setRoot(GameInfoPage);
     }
 
     openSettings() {
