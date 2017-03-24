@@ -9,6 +9,8 @@ import { GameInfoPage } from "../game-info/game-info";
     templateUrl: 'dictionaries-selection.html'
 })
 export class DictionariesSelectionPage {
+    public checkStatus : any = {};
+
     public difficulties: string[] = ['easy', 'normal', 'hard', 'very hard'];
 
     public dictionaries: DictionaryInfo[];
@@ -23,7 +25,21 @@ export class DictionariesSelectionPage {
         this.dictionaries = this.wordService.getDictionaries().filter(dic => dic.language === language).sort((d1, d2) => d1.difficulty - d2.difficulty);
     }
 
-    public startGame() {
+    startGame() {
         this.navCtrl.push(GameInfoPage);
+    }
+
+    dictionaryChecked(dictionaryId: number) {
+        if (this.checkStatus[dictionaryId]) {
+            delete this.checkStatus[dictionaryId];
+        } else {
+            this.checkStatus[dictionaryId] = true;
+        }
+    }
+
+    private getSelectedDictionaryIds(): number[] {
+        let selectedDictionaries = [];
+        Object.keys(this.checkStatus).forEach(k => selectedDictionaries.push(parseInt(k)));
+        return selectedDictionaries;
     }
 }
