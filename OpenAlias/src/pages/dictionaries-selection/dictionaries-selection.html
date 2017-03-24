@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Select dictionaries</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div padding>
+        <ion-segment [(ngModel)]="language">
+            <ion-segment-button (ionSelect)="loadDictionaries('ru')">
+                Russian
+            </ion-segment-button>
+            <ion-segment-button (ionSelect)="loadDictionaries('en')">
+                English
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    
+    <div>
+        <ion-list>
+            <ion-item *ngFor="let dictionary of dictionaries">
+                <h2 item-right>{{dictionary.wordCount}}</h2>
+                <h2>{{dictionary.name}}</h2>
+                
+                <p>{{difficulties[dictionary.difficulty]}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+<ion-footer padding>
+    <button ion-button full (click)="startGame()">Continue</button>
+</ion-footer>

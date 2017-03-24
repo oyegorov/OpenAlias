@@ -22,7 +22,8 @@ export class WordService {
                 description: element.description,
                 difficulty: element.difficulty,
                 language: element.language,
-                name: element.name
+                name: element.name,
+                wordCount: element.words.length
             });
         });
 

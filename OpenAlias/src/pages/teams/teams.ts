@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Player } from "../../model/player";
 import { GameService } from "../../providers/game-service";
 import { GameInfoPage } from "../game-info/game-info";
+import { DictionariesSelectionPage } from "../dictionaries-selection/dictionaries-selection"
 
 @Component({
     selector: 'page-teams',
@@ -23,7 +24,7 @@ export class TeamsPage {
         console.log('ionViewDidLoad TeamsPage');
     }
 
-    public startGame() {
+    public goToDictionaries() {
         let players: Player[] = [];
 
         this.selectedTeams.forEach((team) => {
@@ -36,7 +37,7 @@ export class TeamsPage {
 
         this.gameService.startGame(players);
 
-        this.navCtrl.setRoot(GameInfoPage);
+        this.navCtrl.push(DictionariesSelectionPage);
     }
 
     public addTeam() {

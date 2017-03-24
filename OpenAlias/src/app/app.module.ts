@@ -6,7 +6,7 @@ import { GameMenu } from '../pages/game-menu/game-menu';
 import { GameInfoPage } from '../pages/game-info/game-info';
 import { SettingsPage } from "../pages/settings/settings";
 import { TeamsPage } from "../pages/teams/teams";
-
+import { DictionariesSelectionPage } from "../pages/dictionaries-selection/dictionaries-selection"
 import { GameService } from '../providers/game-service';
 import { GameSettingsService } from '../providers/game-settings-service';
 import { WordService } from '../providers/word-service';
@@ -18,7 +18,8 @@ import { WordService } from '../providers/word-service';
         GameInfoPage,
         Game,
         SettingsPage,
-        TeamsPage
+        TeamsPage,
+        DictionariesSelectionPage
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -30,7 +31,8 @@ import { WordService } from '../providers/word-service';
         GameInfoPage,
         Game,
         SettingsPage,
-        TeamsPage
+        TeamsPage,
+        DictionariesSelectionPage
     ],
     providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, GameService, GameSettingsService, WordService]
 })
