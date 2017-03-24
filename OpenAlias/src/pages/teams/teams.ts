@@ -25,7 +25,7 @@ export class TeamsPage {
         console.log('ionViewDidLoad TeamsPage');
     }
 
-    public goToDictionaries() {
+    public acceptTeams() {
         let players: Player[] = [];
 
         this.selectedTeams.forEach((team) => {
@@ -36,7 +36,11 @@ export class TeamsPage {
             players.push(player);
         });
 
+<<<<<<< HEAD
         this.settingsService.setTeams(players);
+=======
+        this.gameService.addPlayers(players);
+>>>>>>> e4c1f28b52043bf0bda0bfe2f9d7032923ef3b2e
 
         this.navCtrl.push(DictionariesSelectionPage);
     }
