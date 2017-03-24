@@ -31,8 +31,6 @@ export class DictionariesSelectionPage {
     startGame() {
         this.settingsService.setSelectedDictionaryIds(this.getSelectedDictionaryIds());
 
-        this.gameService.startGame();
-
         this.navCtrl.push(GameInfoPage);
     }
 

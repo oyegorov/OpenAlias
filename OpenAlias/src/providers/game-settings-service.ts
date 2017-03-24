@@ -13,8 +13,8 @@ export class GameSettingsService {
 
     constructor() {
         this.settings = new Settings();
-        this.settings.roundDuration = 5;
-        this.settings.wordsPerPage = 4;
+        this.settings.roundDuration = 45;
+        this.settings.wordsPerPage = 5;
     }
 
     getSettings(): Settings {
