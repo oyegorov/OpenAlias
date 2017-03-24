@@ -33,7 +33,7 @@ export class Game {
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
         this.words = [];
-        this.wordService.useDictionaries([1, 2, 3, 4]);
+        this.wordService.useDictionaries(this.gameSettingsService.getSelectedDictionaryIds());
 
         this.wordsPerPage = this.gameSettingsService.getSettings().wordsPerPage;
 

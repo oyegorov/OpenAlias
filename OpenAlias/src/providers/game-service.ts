@@ -6,18 +6,21 @@ import { Dictionary, dictionaries } from "../data/dictionaries"
 
 import { Player } from "../model/player";
 import { PlayerScores } from "../model/playerScores";
+import { GameSettingsService } from "../providers/game-settings-service";
 
 @Injectable()
 export class GameService {
     private playerScores: PlayerScores[];
     private currentPlayerIndex: number;
 
-    constructor() {
+    constructor(private settingsService: GameSettingsService) {
     }
 
-    startGame(players: Player[]) {
+    startGame() {
         this.playerScores = [];
         this.currentPlayerIndex = 0;
+
+        let players = this.settingsService.getTeams();
 
         players.forEach((player, index) => {
             let ps = new PlayerScores(player);

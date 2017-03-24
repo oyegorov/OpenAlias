@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Player } from "../../model/player";
 import { GameService } from "../../providers/game-service";
+import { GameSettingsService } from "../../providers/game-settings-service";
 import { GameInfoPage } from "../game-info/game-info";
 import { DictionariesSelectionPage } from "../dictionaries-selection/dictionaries-selection"
 
@@ -14,7 +15,7 @@ export class TeamsPage {
     private allTeamNames: string[] = ['Push Keen', 'Moo Ducks', 'Chromed Dogs', 'Suicide Squad', 'Climbing Monsters', 'Deam More Awes', 'Copy-Paste Ninjas', 'Jumping Monkeys', 'Ghostbusters'];
     private availableTeams;
 
-    constructor(private gameService: GameService, private navCtrl: NavController, private navParams: NavParams) {
+    constructor(private gameService: GameService, private settingsService: GameSettingsService, private navCtrl: NavController, private navParams: NavParams) {
         this.availableTeams = this.allTeamNames.slice();
         this.addTeam();
         this.addTeam();
@@ -35,7 +36,7 @@ export class TeamsPage {
             players.push(player);
         });
 
-        this.gameService.startGame(players);
+        this.settingsService.setTeams(players);
 
         this.navCtrl.push(DictionariesSelectionPage);
     }
