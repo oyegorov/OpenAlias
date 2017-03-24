@@ -15,7 +15,7 @@ export class GameService {
     constructor() {
     }
 
-    startGame(players: Player[]) {
+    addPlayers(players: Player[]) {
         this.playerScores = [];
         this.currentPlayerIndex = 0;
 
@@ -45,7 +45,6 @@ export class GameService {
         }
 
         this.playerScores[this.currentPlayerIndex].isActive = true;
-
     }
 
     getActivePlayer(): Player {
