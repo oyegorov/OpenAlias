@@ -16,11 +16,9 @@ export class GameService {
     constructor(private settingsService: GameSettingsService) {
     }
 
-    addPlayers() {
+    addPlayers(players: Player[]) {
         this.playerScores = [];
         this.currentPlayerIndex = 0;
-
-        let players = this.settingsService.getTeams();
 
         players.forEach((player, index) => {
             let ps = new PlayerScores(player);

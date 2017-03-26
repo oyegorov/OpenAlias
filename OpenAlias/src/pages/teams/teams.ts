@@ -36,7 +36,7 @@ export class TeamsPage {
             players.push(player);
         });
 
-        this.settingsService.setTeams(players);
+        this.gameService.addPlayers(players);
 
         this.navCtrl.push(DictionariesSelectionPage);
     }
