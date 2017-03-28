@@ -1,6 +1,7 @@
 <ion-header padding>
     <h3>Game is in progress...</h3>
     <p>Time Remaining: {{ timeLeft }}</p>
+    <p>Currently guessed: {{ totalWordsCheckedCount }}</p>
 </ion-header>
 
 <ion-content padding>
@@ -12,5 +13,9 @@
         </ion-row>
     </ion-grid>
 </ion-content>
+
+<ion-footer padding>
+    <button ion-button full (click)="handleBackButton()" >Back</button>
+</ion-footer>
 
 

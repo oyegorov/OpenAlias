@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { TeamsPage } from "../teams/teams";
+import { Game } from "../game/game";
+
+import { GameService } from '../../providers/game-service';
 
 /*
   Generated class for the GameMenu page.
@@ -14,8 +17,14 @@ import { TeamsPage } from "../teams/teams";
   templateUrl: 'game-menu.html'
 })
 export class GameMenu {
+    private isGameRunning: boolean;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) { }
+    constructor(private navCtrl: NavController,
+        private navParams: NavParams,
+        private gameService: GameService
+    ) {
+        this.isGameRunning = gameService.isGameRunning;
+    }
 
     openSettings() {
         this.navCtrl.push(SettingsPage);
@@ -23,6 +32,12 @@ export class GameMenu {
 
     openTeams() {
         this.navCtrl.push(TeamsPage);
+    }
+
+    continue()
+    {
+        this.gameService.resume();
+        this.navCtrl.setRoot(Game);
     }
 
     exitGame() {

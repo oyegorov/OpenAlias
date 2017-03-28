@@ -7,13 +7,33 @@ import { Dictionary, dictionaries } from "../data/dictionaries"
 import { Player } from "../model/player";
 import { PlayerScores } from "../model/playerScores";
 import { GameSettingsService } from "../providers/game-settings-service";
+import { RoundState } from "../model/roundState";
 
 @Injectable()
 export class GameService {
     private playerScores: PlayerScores[];
     private currentPlayerIndex: number;
+    private timeLeft: number;
+    public isGameRunning: boolean;
+    public isGameResuming: boolean;
+    public roundState:RoundState;
 
     constructor(private settingsService: GameSettingsService) {
+        this.isGameRunning = false;
+        this.isGameResuming = false;
+    }
+
+    pause(roundState:RoundState): void {
+        this.roundState = roundState;
+    }
+
+    start() {
+        this.isGameRunning = true;
+        this.isGameResuming = false;
+    }
+
+    resume() {
+        this.isGameResuming = true;
     }
 
     addPlayers(players: Player[]) {

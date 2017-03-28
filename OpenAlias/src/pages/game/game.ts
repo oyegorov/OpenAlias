@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { Platform, NavController, NavParams } from 'ionic-angular';
 
-import {GameInfoPage} from '../game-info/game-info';
+import { GameInfoPage } from '../game-info/game-info';
+import { GameMenu } from '../game-menu/game-menu';
 
 import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
 import { WordService } from '../../providers/word-service';
+
+import { RoundState } from "../../model/RoundState";
 
 @Component({
     selector: 'game-page',
@@ -18,13 +21,42 @@ export class Game {
     private wordsPerPage: number;
     private wordsCheckedCount: number;
     private totalWordsCheckedCount: number;
+    private timer: number;
 
     words: any[];
 
-    constructor(public navCtrl: NavController,
-        private gameService: GameService,
-        private gameSettingsService: GameSettingsService,
-        private wordService: WordService) {
+    constructor(private navCtrl: NavController,
+                private gameService: GameService,
+                private gameSettingsService: GameSettingsService,
+                private wordService: WordService,
+                private platform: Platform) {
+        this.platform.registerBackButtonAction(() => {
+            clearInterval(this.timer);
+
+            let gameState: RoundState = {
+                timeLeft: this.timeLeft,
+                words: this.words,
+                checkedWordsCount: this.totalWordsCheckedCount,
+                wordsCheckedCount: this.wordsCheckedCount
+            };
+
+            this.gameService.pause(gameState);
+            this.navCtrl.push(GameMenu);
+        }, 1);
+    }
+
+    handleBackButton() {
+        clearInterval(this.timer);
+
+        let gameState: RoundState = {
+            timeLeft: this.timeLeft,
+            words: this.words,
+            checkedWordsCount: this.totalWordsCheckedCount,
+            wordsCheckedCount: this.wordsCheckedCount
+        };
+
+        this.gameService.pause(gameState);
+        this.navCtrl.push(GameMenu);
     }
 
     ionViewDidLoad() {
@@ -37,15 +69,20 @@ export class Game {
 
         this.wordsPerPage = this.gameSettingsService.getSettings().wordsPerPage;
 
-        this.initializeWords();
+        if (this.gameService.isGameResuming) {
+            this.timeLeft = this.gameService.roundState.timeLeft;
+            this.totalWordsCheckedCount = this.gameService.roundState.checkedWordsCount;
+            this.words = this.gameService.roundState.words;
+            this.wordsCheckedCount = this.gameService.roundState.wordsCheckedCount;
+        } else {
+            this.initializeWords();
+        }
 
-        var timer = setInterval(() => {
+        this.timer = setInterval(() => {
             if (this.timeLeft !== 0) {
                 this.timeLeft -= 1;
             } else {
-                clearInterval(timer);
-
-                this.totalWordsCheckedCount += this.wordsCheckedCount;
+                clearInterval(this.timer);
 
                 this.gameService.addScore(this.totalWordsCheckedCount);
                 this.gameService.changePlayer();
@@ -53,6 +90,8 @@ export class Game {
                 
             }
         }, 1000);
+
+        this.gameService.start();
     }
 
     itemChecked(item) {
@@ -63,9 +102,9 @@ export class Game {
         item.checked = true;
 
         this.wordsCheckedCount++;
+        this.totalWordsCheckedCount++;
 
         if (this.wordsCheckedCount === this.wordsPerPage) {
-            this.totalWordsCheckedCount += this.wordsCheckedCount;
             this.initializeWords();
         }
     }

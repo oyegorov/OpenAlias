@@ -4,6 +4,9 @@
 
         <button ion-button full (click)="openSettings()">Settings</button>
 
+        <button *ngIf="isGameRunning" ion-button full (click)="continue()">Continue</button>
+
         <button ion-button full (click)="exitGame()">Exit Game</button>
+
     </ion-list>
 </ion-content>
