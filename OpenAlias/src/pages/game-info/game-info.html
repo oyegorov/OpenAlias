@@ -1,18 +1,17 @@
-<!--
-  Generated template for the GameInfo page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<ion-header>
+    <ion-navbar>
+        <ion-title>Round Start</ion-title>
+    </ion-navbar>
+</ion-header>
 
 <ion-content padding>
     <ion-list>
         
-        <p>Current Score:</p>
+        <p>Team Scores:</p>
 
-        <ion-label *ngFor="let playerScore of playerScores">{{playerScore.player.name}} Score: {{playerScore.currentScore}}({{playerScore.lastScore}})</ion-label>
+        <ion-label *ngFor="let playerScore of playerScores"><ion-icon name="md-people"></ion-icon>  {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.lastScore}})</ion-label>
         
-        <button ion-button full (click)="startRound()" >Start {{activePlayer.name}}</button>
+        <button ion-button  full (click)="startRound()" >Start {{activePlayer.name}}</button>
 
     </ion-list>
 

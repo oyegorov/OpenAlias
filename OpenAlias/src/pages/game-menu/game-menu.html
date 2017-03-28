@@ -1,12 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Open Alias</ion-title>
+    </ion-navbar>
+</ion-header>
+
 <ion-content padding>
-    <ion-list>
-        <button ion-button full (click)="openTeams()">Start Game</button>
-
-        <button ion-button full (click)="openSettings()">Settings</button>
-
-        <button *ngIf="isGameRunning" ion-button full (click)="continue()">Continue</button>
-
-        <button ion-button full (click)="exitGame()">Exit Game</button>
-
-    </ion-list>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button full (click)="openTeams()">Start Game</button>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row>
+            <ion-col>
+                <button ion-button full (click)="openSettings()">Settings</button>
+            </ion-col>
+        </ion-row>
+            
+        <ion-row>
+            <ion-col>
+                <button *ngIf="isGameRunning" ion-button full (click)="continue()">Continue</button>
+            </ion-col>
+        </ion-row>
+                
+        <ion-row>
+            <ion-col>
+                <button ion-button full (click)="exitGame()">Exit Game</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

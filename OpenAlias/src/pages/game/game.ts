@@ -31,32 +31,12 @@ export class Game {
                 private wordService: WordService,
                 private platform: Platform) {
         this.platform.registerBackButtonAction(() => {
-            clearInterval(this.timer);
-
-            let gameState: RoundState = {
-                timeLeft: this.timeLeft,
-                words: this.words,
-                checkedWordsCount: this.totalWordsCheckedCount,
-                wordsCheckedCount: this.wordsCheckedCount
-            };
-
-            this.gameService.pause(gameState);
-            this.navCtrl.push(GameMenu);
+            this.pauseGame();
         }, 1);
     }
 
     handleBackButton() {
-        clearInterval(this.timer);
-
-        let gameState: RoundState = {
-            timeLeft: this.timeLeft,
-            words: this.words,
-            checkedWordsCount: this.totalWordsCheckedCount,
-            wordsCheckedCount: this.wordsCheckedCount
-        };
-
-        this.gameService.pause(gameState);
-        this.navCtrl.push(GameMenu);
+       this.pauseGame();
     }
 
     ionViewDidLoad() {
@@ -124,5 +104,19 @@ export class Game {
                     checked: false
                 });
         }
+    }
+
+    pauseGame() {
+        clearInterval(this.timer);
+
+        let gameState: RoundState = {
+            timeLeft: this.timeLeft,
+            words: this.words,
+            checkedWordsCount: this.totalWordsCheckedCount,
+            wordsCheckedCount: this.wordsCheckedCount
+        };
+
+        this.gameService.pause(gameState);
+        this.navCtrl.setRoot(GameMenu);
     }
 }
