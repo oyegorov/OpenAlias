@@ -11,6 +11,8 @@ import { WordService } from '../../providers/word-service';
 
 import { RoundState } from "../../model/RoundState";
 
+import { NativeAudio } from 'ionic-native';
+
 @Component({
     selector: 'game-page',
     templateUrl: 'game.html'
@@ -40,6 +42,8 @@ export class Game {
     }
 
     ionViewDidLoad() {
+
+        NativeAudio.preloadSimple('ding', 'assets/audio/ding.wav');
 
         this.totalWordsCheckedCount = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
@@ -78,6 +82,8 @@ export class Game {
 
         if (item.checked)
             return;
+
+        NativeAudio.play('ding', () => console.log('done playing'));
 
         item.checked = true;
 

@@ -6,6 +6,10 @@ import { Game } from "../game/game";
 
 import { GameService } from '../../providers/game-service';
 
+import { NativeAudio } from 'ionic-native';
+
+import { Platform } from 'ionic-angular';
+
 /*
   Generated class for the GameMenu page.
 
@@ -21,12 +25,16 @@ export class GameMenu {
 
     constructor(private navCtrl: NavController,
         private navParams: NavParams,
-        private gameService: GameService
-    ) {
+        private gameService: GameService,
+        private platform: Platform) {
+
         this.isGameRunning = gameService.isGameRunning;
+
+        NativeAudio.preloadSimple('all_she_wants', 'assets/audio/all_that_she_wants_i.mp3');
     }
 
     openSettings() {
+        NativeAudio.play('all_she_wants');
         this.navCtrl.push(SettingsPage);
     }
 
@@ -41,11 +49,10 @@ export class GameMenu {
     }
 
     exitGame() {
-
+        this.platform.exitApp();
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GameMenuPage');
   }
 
 }
