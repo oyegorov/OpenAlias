@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { GameSettingsService } from '../../providers/game-settings-service';
 import { Settings } from '../../model/settings';
+import { GameInfoPage } from '../game-info/game-info';
 
 @Component({
     selector: 'page-settings',
@@ -10,14 +11,16 @@ import { Settings } from '../../model/settings';
 export class SettingsPage {
     settings: Settings;
 
-    constructor(private gameSettingsService: GameSettingsService) {
+    constructor(private navCtrl: NavController, private gameSettingsService: GameSettingsService) {
         this.settings = this.gameSettingsService.getSettings();
     }
 
     ionViewDidLoad() {
     }
 
-    onPageWillLeave() {
+    startGame() {
         this.gameSettingsService.setSettings(this.settings);
+
+        this.navCtrl.push(GameInfoPage);
     }
 }

@@ -29,13 +29,6 @@ export class GameMenu {
         private platform: Platform) {
 
         this.isGameRunning = gameService.isGameRunning;
-
-        NativeAudio.preloadSimple('all_she_wants', 'assets/audio/all_that_she_wants_i.mp3');
-    }
-
-    openSettings() {
-        NativeAudio.play('all_she_wants');
-        this.navCtrl.push(SettingsPage);
     }
 
     openTeams() {

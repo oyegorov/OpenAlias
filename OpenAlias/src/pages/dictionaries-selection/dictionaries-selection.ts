@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { WordService } from '../../providers/word-service'
 import { DictionaryInfo } from '../../data/dictionaries'
-import { GameInfoPage } from "../game-info/game-info";
+import { SettingsPage } from "../settings/settings";
 import { GameSettingsService } from "../../providers/game-settings-service";
 import { GameService } from "../../providers/game-service";
 
@@ -28,10 +28,10 @@ export class DictionariesSelectionPage {
         this.dictionaries = this.wordService.getDictionaries().filter(dic => dic.language === language).sort((d1, d2) => d1.difficulty - d2.difficulty);
     }
 
-    startGame() {
+    goToSettings() {
         this.settingsService.setSelectedDictionaryIds(this.getSelectedDictionaryIds());
 
-        this.navCtrl.push(GameInfoPage);
+        this.navCtrl.push(SettingsPage);
     }
 
     dictionaryChecked(dictionaryId: number) {
