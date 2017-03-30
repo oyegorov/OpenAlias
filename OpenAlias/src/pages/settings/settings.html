@@ -16,9 +16,9 @@
                 <ion-option [value]="120">2 minutes</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item style="color: black">
             <ion-label>Words per page</ion-label>
-            <ion-select [(ngModel)]="settings.wordsPerPage">
+            <ion-select [(ngModel)]="settings.wordsPerPage" (ionChange)="wordsPerPageChanged()">
                 <ion-option [value]="1">One</ion-option>
                 <ion-option [value]="2">Two</ion-option>
                 <ion-option [value]="3">Three</ion-option>
@@ -28,6 +28,10 @@
                 <ion-option [value]="7">Seven</ion-option>
                 <ion-option [value]="8">Eight</ion-option>
             </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Skip last word</ion-label>
+            <ion-toggle [(ngModel)]="settings.skipLastWord" disabled="{{disableSkipLastWord}}"></ion-toggle>
         </ion-item>
     </ion-list>
 </ion-content>

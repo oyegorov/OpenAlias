@@ -5,9 +5,9 @@ import 'rxjs/add/operator/map';
 import { Dictionary, dictionaries } from "../data/dictionaries"
 
 import { Player } from "../model/player";
-import { PlayerScores } from "../model/playerScores";
+import { PlayerScores } from "../model/player-scores";
 import { GameSettingsService } from "../providers/game-settings-service";
-import { RoundState } from "../model/roundState";
+import { RoundState } from "../model/round-state";
 
 @Injectable()
 export class GameService {

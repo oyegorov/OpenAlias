@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { GameService } from '../../providers/game-service';
 
 import { Player } from "../../model/player";
-import { PlayerScores } from "../../model/playerScores";
+import { PlayerScores } from "../../model/player-scores";
 
 import { Game } from "../game/game";
 

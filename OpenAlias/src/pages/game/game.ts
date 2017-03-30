@@ -9,7 +9,7 @@ import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
 import { WordService } from '../../providers/word-service';
 
-import { RoundState } from "../../model/RoundState";
+import { RoundState } from "../../model/round-state";
 
 import { NativeAudio } from 'ionic-native';
 
@@ -21,6 +21,7 @@ export class Game {
 
     private timeLeft: number;
     private wordsPerPage: number;
+    private skipLastWord: boolean;
     private wordsCheckedCount: number;
     private totalWordsCheckedCount: number;
     private timer: number;
@@ -52,6 +53,7 @@ export class Game {
         this.wordService.useDictionaries(this.gameSettingsService.getSelectedDictionaryIds());
 
         this.wordsPerPage = this.gameSettingsService.getSettings().wordsPerPage;
+        this.skipLastWord = this.gameSettingsService.getSettings().skipLastWord;
 
         if (this.gameService.isGameResuming) {
             this.timeLeft = this.gameService.roundState.timeLeft;
@@ -90,7 +92,8 @@ export class Game {
         this.wordsCheckedCount++;
         this.totalWordsCheckedCount++;
 
-        if (this.wordsCheckedCount === this.wordsPerPage) {
+        let wordsToProceed: number = this.skipLastWord ? this.wordsPerPage - 1 : this.wordsPerPage;
+        if (this.wordsCheckedCount === wordsToProceed) {
             this.initializeWords();
         }
     }

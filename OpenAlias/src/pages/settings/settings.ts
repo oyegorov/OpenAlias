@@ -10,6 +10,7 @@ import { GameInfoPage } from '../game-info/game-info';
 })
 export class SettingsPage {
     settings: Settings;
+    disableSkipLastWord: boolean = false;
 
     constructor(private navCtrl: NavController, private gameSettingsService: GameSettingsService) {
         this.settings = this.gameSettingsService.getSettings();
@@ -22,5 +23,14 @@ export class SettingsPage {
         this.gameSettingsService.setSettings(this.settings);
 
         this.navCtrl.push(GameInfoPage);
+    }
+
+    wordsPerPageChanged() {
+        if (this.settings.wordsPerPage === 1) {
+            this.settings.skipLastWord = false;
+            this.disableSkipLastWord = true;
+        } else {
+            this.disableSkipLastWord = false;
+        }
     }
 }
