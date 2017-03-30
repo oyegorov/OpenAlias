@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.cordova.myapp14eb9a" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.skyclown.openalias" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>OpenAlias</name>
-  <description>An Ionic Framework and Cordova project for Visual Studio</description>
-  <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
+  <description>Mobile game where the objective of the players is to explain words to each other</description>
+  <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">D-Bills Inc.</author>
   <content src="index.html" />
   <access origin="*" />
   <allow-navigation href="http://ionic.local/*" />
@@ -93,4 +93,7 @@
   <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
   <plugin name="cordova-plugin-device" spec="1.1.4" />
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+  <plugin name="cordova-plugin-compat" version="1.1.0" />
+  <plugin name="cordova-plugin-file" version="4.3.2" />
+  <plugin name="cordova-plugin-nativeaudio" version="3.0.9" />
 </widget>
