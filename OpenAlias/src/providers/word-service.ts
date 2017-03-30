@@ -5,12 +5,18 @@ import { Dictionary, DictionaryInfo, dictionaries } from "../data/dictionaries"
 
 @Injectable()
 export class WordService {
-    private wordPool: string[];
-    private wordPointer: number;
+    private wordPointers: number[];
+    private dictionaryIds: number[];
+    private usedWords: string[];
 
     constructor() {
-        this.wordPointer = 0;
-        this.wordPool = [];
+        this.wordPointers = [];
+        this.dictionaryIds = [];
+        this.usedWords = [];
+
+        dictionaries.forEach((element, index) => {
+            this.wordPointers.push(0);
+        });
     }
 
     public getDictionaries(): DictionaryInfo[] {
@@ -36,24 +42,49 @@ export class WordService {
             return;
         }
 
-        this.wordPool = [];
-        dictionaryIds.forEach((id) => {
-            this.wordPool = this.wordPool.concat(dictionaries[id].words);
-        });
+        this.dictionaryIds = dictionaryIds;
 
-        this.wordPool = this.shuffle(this.wordPool);
-        this.wordPointer = 0;
+        dictionaryIds.forEach(id => {
+            if (this.wordPointers[id] == 0) {
+                dictionaries[id].words = this.shuffle(dictionaries[id].words);
+            }
+        });
     }
 
     public getWords(n: number): string[] {
-        if (this.wordPointer + n > this.wordPool.length) {
-            console.info('Not enough words in the word pool');
+        if (this.dictionaryIds.length === 0)
             return [];
+
+        let wordsPerDictionary = Math.ceil(n / this.dictionaryIds.length);
+
+        let words: string[] = [];
+        for (let i = 0; i < this.dictionaryIds.length; i++) {
+            for (let j = 0; j < wordsPerDictionary; j++) {
+                words.push(this.getWordFromDictionary(this.dictionaryIds[i]));
+            }
         }
 
-        let words = this.wordPool.slice(this.wordPointer, this.wordPointer + n);
-        this.wordPointer += n;
-        return words;
+        words = this.shuffle(words);
+
+        return words.slice(0, n);
+    }
+
+    getWordFromDictionary(dictionaryId: number): string {
+        if (this.wordPointers[dictionaryId] === dictionaries[dictionaryId].words.length - 1) {
+            this.wordPointers[dictionaryId] = 0;
+            dictionaries[dictionaryId].words = this.shuffle(dictionaries[dictionaryId].words);
+            this.usedWords = [];
+        }
+
+        let nextWord: string = dictionaries[dictionaryId].words[this.wordPointers[dictionaryId]];
+        this.wordPointers[dictionaryId]++;
+        if (this.usedWords.indexOf(nextWord) === -1) {
+            this.usedWords.push(nextWord);
+            return nextWord;
+        } else {
+            this.wordPointers[dictionaryId]++;
+            return this.getWordFromDictionary(dictionaryId);
+        }
     }
 
     shuffle(array: any[]) {
