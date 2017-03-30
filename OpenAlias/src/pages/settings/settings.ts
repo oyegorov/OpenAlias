@@ -22,7 +22,7 @@ export class SettingsPage {
     startGame() {
         this.gameSettingsService.setSettings(this.settings);
 
-        this.navCtrl.push(GameInfoPage);
+        this.navCtrl.setRoot(GameInfoPage);
     }
 
     wordsPerPageChanged() {

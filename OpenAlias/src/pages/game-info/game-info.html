@@ -5,14 +5,16 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        
-        <p>Team Scores:</p>
-
-        <ion-label *ngFor="let playerScore of playerScores"><ion-icon name="md-people"></ion-icon>  {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.lastScore}})</ion-label>
-        
-        <button ion-button  full (click)="startRound()" >Start {{activePlayer.name}}</button>
-
+    <ion-list inset>
+        <h1>Team Scores</h1>
+        <ion-item  *ngFor="let playerScore of playerScores">
+            <ion-label>
+                <ion-icon name="md-people"></ion-icon> {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.lastScore}})
+            </ion-label>
+        </ion-item>
     </ion-list>
-
 </ion-content>
+
+<ion-footer padding>
+    <button ion-button full (click)="startRound()">Start {{activePlayer.name}}</button>
+</ion-footer>

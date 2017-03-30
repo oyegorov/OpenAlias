@@ -15,7 +15,7 @@
 </ion-content>
 
 <ion-footer padding>
-    <button ion-button full (click)="handleBackButton()" >Back</button>
+    <button ion-button full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
 </ion-footer>
 
 
