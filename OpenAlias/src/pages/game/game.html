@@ -1,9 +1,6 @@
 <ion-header padding>
-    <h3>Game is in progress...</h3>
-    <p>Time Remaining: {{ timeLeft }}</p>
-    <p>Currently guessed: {{ totalWordsCheckedCount }}</p>
+    <ion-title>{{gameService.getActivePlayer().name}} ({{totalWordsCheckedCount}})</ion-title>
 </ion-header>
-
 <ion-content padding>
     <ion-grid>
         <ion-row *ngFor="let word of words">
@@ -13,9 +10,14 @@
         </ion-row>
     </ion-grid>
 </ion-content>
-
 <ion-footer padding>
     <button ion-button full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
+    
+    <div style="width: 100%; text-align: center">
+        <ion-chip>
+            <ion-icon name="time" color="primary" large></ion-icon>
+            <ion-label style="font-size: 2em">{{timeLeft}}</ion-label>
+        </ion-chip>
+    </div>
 </ion-footer>
-
 
