@@ -81,16 +81,11 @@ export class Game {
     }
 
     itemChecked(item) {
-
-        if (item.checked)
-            return;
-
         NativeAudio.play('ding', () => console.log('done playing'));
-
-        item.checked = true;
-
-        this.wordsCheckedCount++;
-        this.totalWordsCheckedCount++;
+        
+        item.checked = !item.checked;
+        this.wordsCheckedCount += item.checked ? 1 : -1;
+        this.totalWordsCheckedCount += item.checked ? 1 : -1;
 
         let wordsToProceed: number = this.skipLastWord ? this.wordsPerPage - 1 : this.wordsPerPage;
         if (this.wordsCheckedCount === wordsToProceed) {
