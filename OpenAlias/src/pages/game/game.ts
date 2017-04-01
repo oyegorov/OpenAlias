@@ -22,8 +22,8 @@ export class Game {
     private timeLeft: number;
     private wordsPerPage: number;
     private skipLastWord: boolean;
-    private wordsCheckedCount: number;
-    private totalWordsCheckedCount: number;
+    private roundScore: number;
+    private totalScore: number;
     private timer: number;
 
     words: any[];
@@ -46,7 +46,7 @@ export class Game {
 
         NativeAudio.preloadSimple('ding', 'assets/audio/ding.wav');
 
-        this.totalWordsCheckedCount = 0;
+        this.totalScore = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
         this.words = [];
@@ -57,9 +57,9 @@ export class Game {
 
         if (this.gameService.isGameResuming) {
             this.timeLeft = this.gameService.roundState.timeLeft;
-            this.totalWordsCheckedCount = this.gameService.roundState.checkedWordsCount;
+            this.totalScore = this.gameService.roundState.totalScore;
             this.words = this.gameService.roundState.words;
-            this.wordsCheckedCount = this.gameService.roundState.wordsCheckedCount;
+            this.roundScore = this.gameService.roundState.roundScore;
         } else {
             this.initializeWords();
         }
@@ -70,7 +70,7 @@ export class Game {
             } else {
                 clearInterval(this.timer);
 
-                this.gameService.addScore(this.totalWordsCheckedCount);
+                this.gameService.addScore(this.totalScore);
                 this.gameService.changePlayer();
                 this.navCtrl.setRoot(GameInfoPage);
                 
@@ -84,18 +84,27 @@ export class Game {
         NativeAudio.play('ding', () => console.log('done playing'));
         
         item.checked = !item.checked;
-        this.wordsCheckedCount += item.checked ? 1 : -1;
-        this.totalWordsCheckedCount += item.checked ? 1 : -1;
+        this.roundScore += item.checked ? 1 : -1;
+        this.totalScore += item.checked ? 1 : -1;
 
         let wordsToProceed: number = this.skipLastWord ? this.wordsPerPage - 1 : this.wordsPerPage;
-        if (this.wordsCheckedCount === wordsToProceed) {
+        if (this.roundScore === wordsToProceed) {
             this.initializeWords();
         }
     }
 
+    discard() {
+        let penalty: number = this.skipLastWord ? this.wordsPerPage - this.roundScore - 1 : this.wordsPerPage - this.roundScore;
+
+        this.roundScore -= penalty;
+        this.totalScore -= penalty;
+
+        this.initializeWords();
+    }
+
     initializeWords(): void {
 
-        this.wordsCheckedCount = 0;
+        this.roundScore = 0;
 
         let words = this.wordService.getWords(this.wordsPerPage);
 
@@ -116,8 +125,8 @@ export class Game {
         let gameState: RoundState = {
             timeLeft: this.timeLeft,
             words: this.words,
-            checkedWordsCount: this.totalWordsCheckedCount,
-            wordsCheckedCount: this.wordsCheckedCount
+            totalScore: this.totalScore,
+            roundScore: this.roundScore
         };
 
         this.gameService.pause(gameState);

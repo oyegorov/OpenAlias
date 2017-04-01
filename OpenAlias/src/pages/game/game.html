@@ -1,11 +1,19 @@
 <ion-header padding>
-    <ion-title>{{gameService.getActivePlayer().name}} ({{totalWordsCheckedCount}})</ion-title>
+    <ion-title>{{gameService.getActivePlayer().name}} ({{totalScore}})</ion-title>
 </ion-header>
 <ion-content padding>
     <ion-grid>
         <ion-row *ngFor="let word of words">
             <ion-col text-center>
                 <button ion-button [color]="word.checked ? 'dark' : 'light'" full (click)="itemChecked(word)">{{word.word}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px">
+            <ion-col text-center>
+                <button ion-button color="danger" outline icon-left (click)="discard()">
+                    <ion-icon name="remove-circle"></ion-icon>
+                    Discard (-{{skipLastWord ? wordsPerPage - roundScore - 1 : wordsPerPage - roundScore}} penalty)
+                </button>
             </ion-col>
         </ion-row>
     </ion-grid>
