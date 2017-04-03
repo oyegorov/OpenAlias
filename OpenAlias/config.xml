@@ -99,4 +99,5 @@
   <plugin name="cordova-plugin-file" version="4.3.2" />
   <plugin name="cordova-plugin-nativeaudio" version="3.0.9" />
   <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+  <preference name="Orientation" value="portrait" />
 </widget>
