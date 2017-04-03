@@ -10,11 +10,11 @@
             <div>{{team}}</div>
             <ion-icon name="close" item-right (click)="deleteTeam(i)" *ngIf="selectedTeams.length > 2"></ion-icon>
         </ion-item>
-        <button ion-button full (click)="addTeam()" [disabled]="selectedTeams.length > 5">Add Team</button>
+        <button ion-button round full (click)="addTeam()" [disabled]="selectedTeams.length > 5">Add Team</button>
     </ion-list>
 </ion-content>
 
 
 <ion-footer padding>
-    <button ion-button full (click)="acceptTeams()">Continue</button>
+    <button ion-button round full (click)="acceptTeams()">Continue</button>
 </ion-footer>

@@ -5,12 +5,12 @@
     <ion-grid>
         <ion-row *ngFor="let word of words">
             <ion-col text-center>
-                <button ion-button [color]="word.checked ? 'dark' : 'light'" full (click)="itemChecked(word)">{{word.word}}</button>
+                <button ion-button round [color]="word.checked ? 'dark' : 'light'" full (click)="itemChecked(word)">{{word.word}}</button>
             </ion-col>
         </ion-row>
         <ion-row style="margin-top: 5px">
             <ion-col text-center>
-                <button ion-button color="danger" outline icon-left (click)="discard()">
+                <button ion-button round color="danger" outline icon-left (click)="discard()">
                     <ion-icon name="remove-circle"></ion-icon>
                     Discard (-{{skipLastWord ? wordsPerPage - roundScore - 1 : wordsPerPage - roundScore}} penalty)
                 </button>
@@ -19,7 +19,7 @@
     </ion-grid>
 </ion-content>
 <ion-footer padding>
-    <button ion-button full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
+    <button ion-button round full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
     
     <div style="width: 100%; text-align: center">
         <ion-chip>
