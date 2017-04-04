@@ -6,10 +6,10 @@
 <ion-content padding>
     <div padding>
         <ion-segment [(ngModel)]="language">
-            <ion-segment-button (ionSelect)="loadDictionaries('ru')">
+            <ion-segment-button (ionSelect)="loadDictionaries('ru')" value="ru">
                 Russian
             </ion-segment-button>
-            <ion-segment-button (ionSelect)="loadDictionaries('en')">
+            <ion-segment-button (ionSelect)="loadDictionaries('en')" value="en">
                 English
             </ion-segment-button>
         </ion-segment>
@@ -17,11 +17,10 @@
     
     <div>
         <ion-list>
-            <ion-item *ngFor="let dictionary of dictionaries" [color]="checkStatus[dictionary.id] === true ? 'dark' : 'light'" full (click)="dictionaryChecked(dictionary.id)">
+            <ion-item *ngFor="let dictionary of dictionaries" [color]="checkStatus[dictionary.id] === true ? 'primary' : ''" full (click)="dictionaryChecked(dictionary.id)">
                 <h2 item-right>{{dictionary.wordCount}}</h2>
-                <h2>{{dictionary.name}}</h2>
-                
-                <p>{{difficulties[dictionary.difficulty]}}</p>
+                <h2 class="padded">{{dictionary.name}}</h2>
+                <p class="padded">{{difficulties[dictionary.difficulty]}}</p>
             </ion-item>
         </ion-list>
     </div>

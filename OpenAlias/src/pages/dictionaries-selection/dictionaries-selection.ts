@@ -13,10 +13,9 @@ import { GameService } from "../../providers/game-service";
 export class DictionariesSelectionPage {
     public selectedDictionariesCount: number = 0;
     public checkStatus: any = {};
-
     public difficulties: string[] = ['easy', 'normal', 'hard', 'very hard'];
-
     public dictionaries: DictionaryInfo[];
+    public language: string = "ru";
 
     constructor(private navCtrl: NavController, private navParams: NavParams, private wordService: WordService, private settingsService: GameSettingsService, private gameService: GameService) { }
 
