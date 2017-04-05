@@ -25,6 +25,7 @@ export class Game {
     private roundScore: number;
     private totalScore: number;
     private timer: number;
+    private warningTimes: number[];
 
     words: any[];
 
@@ -36,6 +37,8 @@ export class Game {
         this.platform.registerBackButtonAction(() => {
             this.pauseGame();
         }, 1);
+
+        this.warningTimes = [2, 3, 4, 11];
     }
 
     handleBackButton() {
@@ -45,6 +48,7 @@ export class Game {
     ionViewDidLoad() {
 
         NativeAudio.preloadSimple('ding', 'assets/audio/ding.wav');
+        NativeAudio.preloadSimple('warning', 'assets/audio/warning.wav');
 
         this.totalScore = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
@@ -66,6 +70,11 @@ export class Game {
 
         this.timer = setInterval(() => {
             if (this.timeLeft !== 0) {
+
+                if (this.warningTimes.some(x => x === this.timeLeft)) {
+                    NativeAudio.play('warning');
+                }
+
                 this.timeLeft -= 1;
             } else {
                 clearInterval(this.timer);
@@ -81,7 +90,7 @@ export class Game {
     }
 
     itemChecked(item) {
-        NativeAudio.play('ding', () => console.log('done playing'));
+        NativeAudio.play('ding');
         
         item.checked = !item.checked;
         this.roundScore += item.checked ? 1 : -1;

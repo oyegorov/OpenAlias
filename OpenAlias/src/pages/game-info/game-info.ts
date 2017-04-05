@@ -8,7 +8,6 @@ import { PlayerScores } from "../../model/player-scores";
 
 import { Game } from "../game/game";
 
-
 @Component({
   selector: 'page-game-info',
   templateUrl: 'game-info.html'
@@ -16,6 +15,7 @@ import { Game } from "../game/game";
 export class GameInfoPage {
     playerScores: PlayerScores[];
     activePlayer: Player = new Player();
+    roundNumber: number;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
@@ -24,6 +24,7 @@ export class GameInfoPage {
   ionViewDidLoad() {
       this.playerScores = this.gameService.getPlayerScores();
       this.activePlayer = this.gameService.getActivePlayer();
+      this.roundNumber = this.gameService.roundNumber;
   }
 
   startRound() {

@@ -6,19 +6,19 @@ export class PlayerScores {
     public isActive: boolean;
 
     public currentScore: number;
-    public lastScore: number;
+    public currentRoundScore: number;
 
     constructor(player:Player) {
         this.player = player;
         this.scores = [];
         this.currentScore = 0;
         this.isActive = false;
-        this.lastScore = 0;
+        this.currentRoundScore = 0;
     }
 
     public addScore(score: number) {
         this.scores.push(score);
         this.currentScore += score;
-        this.lastScore = score;
+        this.currentRoundScore = score;
     }
 }

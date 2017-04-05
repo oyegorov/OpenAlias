@@ -16,11 +16,13 @@ export class GameService {
     private timeLeft: number;
     public isGameRunning: boolean;
     public isGameResuming: boolean;
-    public roundState:RoundState;
+    public roundState: RoundState;
+    public roundNumber: number;
 
     constructor(private settingsService: GameSettingsService) {
         this.isGameRunning = false;
         this.isGameResuming = false;
+        this.roundNumber = 1;
     }
 
     pause(roundState:RoundState): void {
@@ -61,6 +63,7 @@ export class GameService {
 
         if (this.currentPlayerIndex + 1 === this.playerScores.length) {
             this.currentPlayerIndex = 0;
+            this.roundNumber++;
         } else {
             this.currentPlayerIndex++;
         }

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Round Start</ion-title>
+        <ion-title>Round {{roundNumber}} Start</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
         <h1>Team Scores</h1>
         <ion-item  *ngFor="let playerScore of playerScores">
             <ion-label>
-                <ion-icon name="md-people"></ion-icon> {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.lastScore}})
+                <ion-icon name="md-people"></ion-icon> {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.currentRoundScore}})
             </ion-label>
         </ion-item>
     </ion-list>
