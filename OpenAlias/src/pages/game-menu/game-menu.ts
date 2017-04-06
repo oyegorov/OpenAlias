@@ -3,11 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { TeamsPage } from "../teams/teams";
 import { Game } from "../game/game";
-
+import { RoundCorrectionsPage } from "../round-corrections/round-corrections";
 import { GameService } from '../../providers/game-service';
-
 import { NativeAudio } from 'ionic-native';
-
 import { Platform } from 'ionic-angular';
 
 /*
@@ -38,7 +36,7 @@ export class GameMenu {
     continue()
     {
         this.gameService.resume();
-        this.navCtrl.setRoot(Game);
+        this.navCtrl.setRoot(this.gameService.roundState.timeLeft > 0 ? Game : RoundCorrectionsPage);
     }
 
     exitGame() {
@@ -47,5 +45,4 @@ export class GameMenu {
 
   ionViewDidLoad() {
   }
-
 }

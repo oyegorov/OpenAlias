@@ -12,7 +12,7 @@
 <ion-content padding>
     <ion-list *ngIf="roundState != null" insetinset>
         <ion-item *ngFor="let w of roundState.words">
-            {{w.word}}
+            {{w.word | uppercase}}
             <ion-icon name="thumbs-up" item-right [color]="w.checked ? 'red' : 'grey'" (click)="setChecked(w)"></ion-icon>
             <ion-icon name="close" item-right [color]="!w.dismissed && !w.checked ? 'red' : 'grey'" (click)="setNeutral(w)"></ion-icon>
             <ion-icon name="thumbs-down" item-right [color]="w.dismissed ? 'red' : 'grey'" (click)="setDismissed(w)"></ion-icon>
