@@ -36,6 +36,7 @@ export class GameService {
     start() {
         this.isGameRunning = true;
         this.isGameResuming = false;
+        this.roundNumber = 1;
     }
 
     resume() {
