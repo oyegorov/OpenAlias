@@ -13,9 +13,9 @@
     <ion-list *ngIf="roundState != null" insetinset>
         <ion-item *ngFor="let w of roundState.words">
             {{w.word | uppercase}}
-            <ion-icon name="thumbs-up" item-right [color]="w.checked ? 'red' : 'grey'" (click)="setChecked(w)"></ion-icon>
-            <ion-icon name="close" item-right [color]="!w.dismissed && !w.checked ? 'red' : 'grey'" (click)="setNeutral(w)"></ion-icon>
-            <ion-icon name="thumbs-down" item-right [color]="w.dismissed ? 'red' : 'grey'" (click)="setDismissed(w)"></ion-icon>
+            <ion-icon name="thumbs-up" item-right [color]="w.checked ? 'primary' : 'grey'" (click)="setChecked(w)"></ion-icon>
+            <ion-icon name="close" item-right [color]="!w.dismissed && !w.checked ? 'primary' : 'grey'" (click)="setNeutral(w)"></ion-icon>
+            <ion-icon name="thumbs-down" item-right [color]="w.dismissed ? 'primary' : 'grey'" (click)="setDismissed(w)"></ion-icon>
         </ion-item>
     </ion-list>
 </ion-content>
