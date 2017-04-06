@@ -6,11 +6,12 @@
 
 <ion-content padding>
     <ion-list inset>
-        <h1>Team Scores</h1>
-        <ion-item  *ngFor="let playerScore of playerScores">
-            <ion-label>
-                <ion-icon name="md-people"></ion-icon> {{playerScore.player.name}} {{playerScore.currentScore}}({{playerScore.currentRoundScore}})
-            </ion-label>
+        <h1 class="heading">Current Scores</h1>
+        <ion-item *ngFor="let playerScore of playerScores">
+            <ion-icon name="people" icon-large></ion-icon> 
+            <span>{{playerScore.player.name}}</span>
+            
+            <span item-right>{{playerScore.currentScore}}({{playerScore.currentRoundScore}})</span>
         </ion-item>
     </ion-list>
 </ion-content>
