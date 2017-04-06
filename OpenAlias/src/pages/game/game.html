@@ -3,7 +3,7 @@
 </ion-header>
 <ion-content padding>
     <ion-grid>
-        <ion-row *ngFor="let word of words">
+        <ion-row *ngFor="let word of currentScreenWords">
             <ion-col text-center>
                 <button ion-button round [color]="word.checked ? 'primary' : 'light'" full (click)="itemChecked(word)" solid style="font-weight: bold">{{word.word}}</button>
             </ion-col>
@@ -12,7 +12,7 @@
             <ion-col text-center>
                 <button ion-button round color="danger" outline icon-left (click)="discard()">
                     <ion-icon name="remove-circle"></ion-icon>
-                    Discard (-{{skipLastWord ? wordsPerPage - roundScore - 1 : wordsPerPage - roundScore}} penalty)
+                    Discard (-{{skipLastWord ? wordsPerPage - currentScreenScore - 1 : wordsPerPage - currentScreenScore}} penalty)
                 </button>
             </ion-col>
         </ion-row>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform, NavController, NavParams } from 'ionic-angular';
 
 import { GameInfoPage } from '../game-info/game-info';
+import { RoundCorrectionsPage } from '../round-corrections/round-corrections';
 import { GameMenu } from '../game-menu/game-menu';
 
 import { GameService } from '../../providers/game-service';
@@ -22,11 +23,12 @@ export class Game {
     private timeLeft: number;
     private wordsPerPage: number;
     private skipLastWord: boolean;
-    private roundScore: number;
+    private currentScreenScore: number;
     private totalScore: number;
     private timer: number;
     private warningTimes: number[];
 
+    currentScreenWords: any[];
     words: any[];
 
     constructor(private navCtrl: NavController,
@@ -53,6 +55,7 @@ export class Game {
         this.totalScore = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
+        this.currentScreenWords = [];
         this.words = [];
         this.wordService.useDictionaries(this.gameSettingsService.getSelectedDictionaryIds());
 
@@ -61,9 +64,10 @@ export class Game {
 
         if (this.gameService.isGameResuming) {
             this.timeLeft = this.gameService.roundState.timeLeft;
-            this.totalScore = this.gameService.roundState.totalScore;
             this.words = this.gameService.roundState.words;
-            this.roundScore = this.gameService.roundState.roundScore;
+            this.totalScore = this.gameService.roundState.totalScore;
+            this.currentScreenWords = this.gameService.roundState.currentScreenWords;
+            this.currentScreenScore = this.gameService.roundState.currentScreenScore;
         } else {
             this.initializeWords();
         }
@@ -79,10 +83,9 @@ export class Game {
             } else {
                 clearInterval(this.timer);
 
-                this.gameService.addScore(this.totalScore);
-                this.gameService.changePlayer();
-                this.navCtrl.setRoot(GameInfoPage);
-                
+                this.gameService.endRound(this.getRoundState());
+
+                this.navCtrl.setRoot(RoundCorrectionsPage);
             }
         }, 1000);
 
@@ -93,52 +96,63 @@ export class Game {
         NativeAudio.play('ding');
         
         item.checked = !item.checked;
-        this.roundScore += item.checked ? 1 : -1;
+        this.currentScreenScore += item.checked ? 1 : -1;
         this.totalScore += item.checked ? 1 : -1;
 
         let wordsToProceed: number = this.skipLastWord ? this.wordsPerPage - 1 : this.wordsPerPage;
-        if (this.roundScore === wordsToProceed) {
+        if (this.currentScreenScore === wordsToProceed) {
             this.initializeWords();
         }
     }
 
     discard() {
-        let penalty: number = this.skipLastWord ? this.wordsPerPage - this.roundScore - 1 : this.wordsPerPage - this.roundScore;
+        let penalty: number = this.skipLastWord ? this.wordsPerPage - this.currentScreenScore - 1 : this.wordsPerPage - this.currentScreenScore;
 
-        this.roundScore -= penalty;
+        this.currentScreenScore -= penalty;
         this.totalScore -= penalty;
+
+        for (let i = 0; i < this.currentScreenWords.length && penalty !=0; i++) {
+            if (!this.currentScreenWords[i].checked) {
+                this.currentScreenWords[i].dismissed = true;
+                penalty--;
+            }
+        }
 
         this.initializeWords();
     }
 
     initializeWords(): void {
+        this.currentScreenScore = 0;
 
-        this.roundScore = 0;
+        let currentScreenWords = this.wordService.getWords(this.wordsPerPage);
 
-        let words = this.wordService.getWords(this.wordsPerPage);
+        this.currentScreenWords = [];
 
-        this.words = [];
-
-        for (let i = 0; i < words.length; i++) {
-            this.words.push(
+        for (let i = 0; i < currentScreenWords.length; i++) {
+            this.currentScreenWords.push(
                 {
-                    word: words[i],
+                    word: currentScreenWords[i],
                     checked: false
                 });
         }
+
+        this.words = this.words.concat(this.currentScreenWords);
     }
 
     pauseGame() {
         clearInterval(this.timer);
 
-        let gameState: RoundState = {
+        this.gameService.pause(this.getRoundState());
+        this.navCtrl.setRoot(GameMenu);
+    }
+
+    getRoundState() : RoundState {
+        return {
             timeLeft: this.timeLeft,
             words: this.words,
+            currentScreenWords: this.currentScreenWords,
             totalScore: this.totalScore,
-            roundScore: this.roundScore
+            currentScreenScore: this.currentScreenScore
         };
-
-        this.gameService.pause(gameState);
-        this.navCtrl.setRoot(GameMenu);
     }
 }

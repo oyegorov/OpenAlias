@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Review round score
+            <p class="subtitle">
+                {{gameService.getActivePlayer().name}} ({{totalScore}})
+            </p>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngIf="roundState != null" insetinset>
+        <ion-item *ngFor="let w of roundState.words">
+            {{w.word}}
+            <ion-icon name="thumbs-up" item-right [color]="w.checked ? 'red' : 'grey'" (click)="setChecked(w)"></ion-icon>
+            <ion-icon name="close" item-right [color]="!w.dismissed && !w.checked ? 'red' : 'grey'" (click)="setNeutral(w)"></ion-icon>
+            <ion-icon name="thumbs-down" item-right [color]="w.dismissed ? 'red' : 'grey'" (click)="setDismissed(w)"></ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer padding>
+    <button ion-button full (click)="proceed()">Continue ({{totalScore}})</button>
+</ion-footer>

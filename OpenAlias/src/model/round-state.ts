@@ -1,6 +1,7 @@
 ﻿export class RoundState {
     timeLeft: number;
     words: any[];
-    roundScore: number;
+    currentScreenWords: any[];
+    currentScreenScore: number;
     totalScore: number;
 }

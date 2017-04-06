@@ -10,6 +10,7 @@ import { DictionariesSelectionPage } from "../pages/dictionaries-selection/dicti
 import { GameService } from '../providers/game-service';
 import { GameSettingsService } from '../providers/game-settings-service';
 import { WordService } from '../providers/word-service';
+import { RoundCorrectionsPage } from "../pages/round-corrections/round-corrections";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { WordService } from '../providers/word-service';
         Game,
         SettingsPage,
         TeamsPage,
-        DictionariesSelectionPage
+        DictionariesSelectionPage,
+        RoundCorrectionsPage
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -32,7 +34,8 @@ import { WordService } from '../providers/word-service';
         Game,
         SettingsPage,
         TeamsPage,
-        DictionariesSelectionPage
+        DictionariesSelectionPage,
+        RoundCorrectionsPage
     ],
     providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, GameService, GameSettingsService, WordService]
 })

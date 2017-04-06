@@ -25,6 +25,10 @@ export class GameService {
         this.roundNumber = 1;
     }
 
+    endRound(roundState: RoundState): void {
+        this.roundState = roundState;
+    }
+
     pause(roundState:RoundState): void {
         this.roundState = roundState;
     }
