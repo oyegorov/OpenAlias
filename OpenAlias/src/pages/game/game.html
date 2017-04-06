@@ -5,7 +5,7 @@
     <ion-grid>
         <ion-row *ngFor="let word of currentScreenWords">
             <ion-col text-center>
-                <button ion-button round [color]="word.checked ? 'primary' : 'light'" full (click)="itemChecked(word)" solid style="font-weight: bold">{{word.word}}</button>
+                <button ion-button round [color]="word.checked ? 'primary' : 'light'" full (touchstart)="$event.stopPropagation();itemChecked(word);" solid style="font-weight: bold">{{word.word}}</button>
             </ion-col>
         </ion-row>
         <ion-row style="margin-top: 5px">
