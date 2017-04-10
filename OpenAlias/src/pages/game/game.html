@@ -7,8 +7,10 @@
             <ion-col>
                 <div class="border-box">
                     <ion-list class="word-box">
-                        <ion-item *ngFor="let word of currentScreenWords" [color]="word.checked ? 'primary' : ''" full (touchstart)="$event.stopPropagation();itemChecked(word);">
-                            <h2 class="word">{{word.word | uppercase}}</h2>
+                        <ion-item *ngFor="let word of currentScreenWords" [color]="word.checked ? 'light' : ''" full (touchstart)="$event.stopPropagation();itemChecked(word);">
+                            <h2 class="word">
+                                <ion-icon class="check-mark" name="checkmark-circle" icon-large icon-left [style.visibility]="word.checked ? 'visible' : 'hidden'"></ion-icon> {{word.word | uppercase}}
+                            </h2>
                         </ion-item>
                     </ion-list>
                 </div>
