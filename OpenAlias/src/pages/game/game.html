@@ -1,26 +1,31 @@
 <ion-header padding>
     <ion-title>{{gameService.getActivePlayer().name}} ({{totalScore}})</ion-title>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="vertical-align-content">
     <ion-grid>
-        <ion-row *ngFor="let word of currentScreenWords">
-            <ion-col text-center>
-                <button ion-button round [color]="word.checked ? 'primary' : 'light'" full (touchstart)="$event.stopPropagation();itemChecked(word);" solid style="font-weight: bold">{{word.word}}</button>
-            </ion-col>
-        </ion-row>
-        <ion-row style="margin-top: 5px">
-            <ion-col text-center>
-                <button ion-button round color="danger" outline icon-left (click)="discard()">
-                    <ion-icon name="remove-circle"></ion-icon>
-                    Discard (-{{skipLastWord ? wordsPerPage - currentScreenScore - 1 : wordsPerPage - currentScreenScore}} penalty)
-                </button>
+        <ion-row>
+            <ion-col>
+                <div class="border-box">
+                    <ion-list class="word-box">
+                        <ion-item *ngFor="let word of currentScreenWords" [color]="word.checked ? 'primary' : ''" full (touchstart)="$event.stopPropagation();itemChecked(word);">
+                            <h2 class="word">{{word.word | uppercase}}</h2>
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <p></p>
+                <div class="discard">
+                    <button ion-button round color="danger" outline icon-left (click)="discard()">
+                        <ion-icon name="remove-circle"></ion-icon>
+                        Discard (-{{skipLastWord ? wordsPerPage - currentScreenScore - 1 : wordsPerPage - currentScreenScore}} penalty)
+                    </button>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
 <ion-footer padding>
     <button ion-button round full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
-    
+
     <div style="width: 100%; text-align: center">
         <ion-chip>
             <ion-icon name="time" color="primary" large></ion-icon>
