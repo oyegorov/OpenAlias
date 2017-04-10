@@ -7,7 +7,8 @@
 <ion-content padding>
     <ion-list>
         <ion-item *ngFor="let team of selectedTeams; let i = index">
-            <div>{{team}}</div>
+            <ion-icon name="people" icon-large></ion-icon>
+            <span class="padded">{{team}}</span>
             <ion-icon name="close" item-right (click)="deleteTeam(i)" *ngIf="selectedTeams.length > 2"></ion-icon>
         </ion-item>
         <button ion-button round full (click)="addTeam()" [disabled]="selectedTeams.length > 5">Add Team</button>
