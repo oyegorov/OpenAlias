@@ -5,6 +5,7 @@ import { GameService } from "../../providers/game-service";
 import { GameSettingsService } from "../../providers/game-settings-service";
 import { GameInfoPage } from "../game-info/game-info";
 import { DictionariesSelectionPage } from "../dictionaries-selection/dictionaries-selection"
+import { teamNames } from "../../data/team-names"
 
 @Component({
     selector: 'page-teams',
@@ -12,11 +13,10 @@ import { DictionariesSelectionPage } from "../dictionaries-selection/dictionarie
 })
 export class TeamsPage {
     public selectedTeams = [];
-    private allTeamNames: string[] = ['Push Keen', 'Moo Ducks', 'Chromed Dogs', 'Suicide Squad', 'Climbing Monsters', 'Deam More Awes', 'Copy-Paste Ninjas', 'Jumping Monkeys', 'Ghostbusters'];
     private availableTeams;
 
     constructor(private gameService: GameService, private settingsService: GameSettingsService, private navCtrl: NavController, private navParams: NavParams) {
-        this.availableTeams = this.allTeamNames.slice();
+        this.availableTeams = teamNames.slice();
         this.addTeam();
         this.addTeam();
     }
