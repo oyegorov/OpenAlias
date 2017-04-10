@@ -8,6 +8,7 @@ import { Player } from "../model/player";
 import { PlayerScores } from "../model/player-scores";
 import { GameSettingsService } from "../providers/game-settings-service";
 import { RoundState } from "../model/round-state";
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class GameService {
@@ -19,10 +20,21 @@ export class GameService {
     public roundState: RoundState;
     public roundNumber: number;
 
-    constructor(private settingsService: GameSettingsService) {
+    constructor(private settingsService: GameSettingsService, storage: Storage) {
         this.isGameRunning = false;
         this.isGameResuming = false;
         this.roundNumber = 1;
+
+        storage.ready().then(() => {
+
+            // set a key/value
+            storage.set('name', 'Max');
+
+            // Or to get a key/value pair
+            storage.get('age').then((val) => {
+                console.log('Your age is', val);
+            })
+        });
     }
 
     endRound(roundState: RoundState): void {

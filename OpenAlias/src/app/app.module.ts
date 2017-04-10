@@ -11,6 +11,7 @@ import { GameService } from '../providers/game-service';
 import { GameSettingsService } from '../providers/game-settings-service';
 import { WordService } from '../providers/word-service';
 import { RoundCorrectionsPage } from "../pages/round-corrections/round-corrections";
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { RoundCorrectionsPage } from "../pages/round-corrections/round-correctio
         RoundCorrectionsPage
     ],
     imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [

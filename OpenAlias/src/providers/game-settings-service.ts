@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { Settings } from "../model/settings";
 import { Player } from "../model/player";
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class GameSettingsService {
@@ -11,10 +12,18 @@ export class GameSettingsService {
     private teams: Player[];
     private selectedDictionaryIds: number[];
 
-    constructor() {
+    constructor(private storage: Storage) {
         this.settings = new Settings();
         this.settings.roundDuration = 45;
         this.settings.wordsPerPage = 6;
+
+        storage.ready().then(() => {
+            storage.get('settings').then((s) => {
+                if (s) {
+                    this.settings = s;
+                }
+            });
+        });
     }
 
     getSettings(): Settings {
@@ -26,6 +35,8 @@ export class GameSettingsService {
             throw new Error('setting == null');
 
         this.settings = settings;
+
+        this.storage.set('settings', this.settings);
     };
 
     getTeams(): Player[] {
