@@ -5,6 +5,7 @@ import { TeamsPage } from "../teams/teams";
 import { Game } from "../game/game";
 import { RoundCorrectionsPage } from "../round-corrections/round-corrections";
 import { GameService } from '../../providers/game-service';
+import { LocalizationService } from '../../providers/localization-service';
 import { NativeAudio } from 'ionic-native';
 import { Platform } from 'ionic-angular';
 
@@ -24,7 +25,8 @@ export class GameMenu {
     constructor(private navCtrl: NavController,
         private navParams: NavParams,
         private gameService: GameService,
-        private platform: Platform) {
+        private platform: Platform,
+        private localizationService: LocalizationService) {
 
         this.isGameRunning = gameService.isGameRunning;
     }
@@ -41,6 +43,10 @@ export class GameMenu {
 
     exitGame() {
         this.platform.exitApp();
+    }
+
+    setLanguage(language: string) {
+        this.localizationService.setLanguage(language);
     }
 
   ionViewDidLoad() {

@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Game } from '../pages/game/game';
 import { GameMenu } from '../pages/game-menu/game-menu';
+import { LocalizationService } from '../providers/localization-service';
 
 @Component({
     templateUrl: 'app.html'
@@ -15,11 +16,13 @@ export class MyApp {
 
     pages: Array<{ title: string, component: any }>;
 
-    constructor(public platform: Platform) {
+    constructor(public platform: Platform, public localizationService: LocalizationService) {
         this.initializeApp();
     }
 
     initializeApp() {
+        this.localizationService.initialize();
+
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.

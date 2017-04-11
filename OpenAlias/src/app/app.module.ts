@@ -10,10 +10,18 @@ import { DictionariesSelectionPage } from "../pages/dictionaries-selection/dicti
 import { GameService } from '../providers/game-service';
 import { GameSettingsService } from '../providers/game-settings-service';
 import { WordService } from '../providers/word-service';
+import { LocalizationService } from '../providers/localization-service';
 import { RoundCorrectionsPage } from "../pages/round-corrections/round-corrections";
 import { IonicStorageModule } from '@ionic/storage';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+import { Http, HttpModule } from '@angular/http';
 
-@NgModule({
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/localization', '.json');
+}
+
+@
+NgModule({
     declarations: [
         MyApp,
         GameMenu,
@@ -26,7 +34,13 @@ import { IonicStorageModule } from '@ionic/storage';
     ],
     imports: [
         IonicModule.forRoot(MyApp),
-        IonicStorageModule.forRoot()
+        IonicStorageModule.forRoot(),
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        }),
+        HttpModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -39,6 +53,6 @@ import { IonicStorageModule } from '@ionic/storage';
         DictionariesSelectionPage,
         RoundCorrectionsPage
     ],
-    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, GameService, GameSettingsService, WordService]
+    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, GameService, GameSettingsService, WordService, LocalizationService]
 })
 export class AppModule { }
