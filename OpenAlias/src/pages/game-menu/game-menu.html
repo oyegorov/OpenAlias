@@ -5,13 +5,26 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-fab top right padding>
+        <ion-row>
+            <ion-col>
+                <button class="language-en" ion-fab></button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button class="language-ru" ion-fab></button>
+            </ion-col>
+        </ion-row>
+    </ion-fab>
+
     <ion-grid>
         <ion-row>
             <ion-col style="text-align: center">
-                <img src="assets/img/logo.png" />
+                <img src="assets/img/logo.png"/>
             </ion-col>
         </ion-row>
-        
+
         <ion-row>
             <ion-col>
                 <button *ngIf="isGameRunning" ion-button round full (click)="continue()">Continue</button>

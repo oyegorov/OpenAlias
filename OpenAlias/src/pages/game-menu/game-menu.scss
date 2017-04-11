@@ -5,6 +5,17 @@ page-game-menu {
         align-items: center !important;
     }
 
+    .language-ru {
+        background-image: url('../assets/img/language_ru.png');
+        background-size: cover;
+        background-color: transparent;
+    }
+
+    .language-en {
+        background-image: url('../assets/img/language_en.png');
+        background-size: cover;
+        background-color: transparent;
+    }
     /*ion-content {
         background-image: url('../assets/img/background.png');
         background-size: cover;
