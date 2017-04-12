@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Review round score
+            {{ 'review_round_score' | translate }}
             <p class="subtitle">
                 {{gameService.getActivePlayer().name}} ({{totalScore}})
             </p>
@@ -21,5 +21,5 @@
 </ion-content>
 
 <ion-footer padding>
-    <button ion-button full (click)="proceed()">Continue ({{totalScore}})</button>
+    <button ion-button full (click)="proceed()">{{ 'continue_game' | translate }} ({{totalScore}})</button>
 </ion-footer>

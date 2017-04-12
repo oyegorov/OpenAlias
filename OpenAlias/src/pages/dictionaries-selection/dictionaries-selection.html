@@ -1,16 +1,16 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Select dictionaries</ion-title>
+    <ion-title>{{ 'select_dictionaries' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
     <div padding>
         <ion-segment [(ngModel)]="language">
             <ion-segment-button (ionSelect)="loadDictionaries('ru')" value="ru">
-                Russian
+                {{ 'russian' | translate }}
             </ion-segment-button>
             <ion-segment-button (ionSelect)="loadDictionaries('en')" value="en">
-                English
+                {{ 'english' | translate }}
             </ion-segment-button>
         </ion-segment>
     </div>
@@ -20,11 +20,11 @@
             <ion-item *ngFor="let dictionary of dictionaries" [color]="checkStatus[dictionary.id] === true ? 'primary' : ''" full (click)="dictionaryChecked(dictionary.id)">
                 <h2 item-right>{{dictionary.wordCount}}</h2>
                 <h2 class="padded">{{dictionary.name}}</h2>
-                <p class="padded">{{difficulties[dictionary.difficulty]}}</p>
+                <p class="padded">{{ 'difficulty' + dictionary.difficulty | translate }}</p>
             </ion-item>
         </ion-list>
     </div>
 </ion-content>
 <ion-footer padding>
-    <button ion-button round full (click)="goToSettings()" [disabled]="selectedDictionariesCount == 0">Continue</button>
+    <button ion-button round full (click)="goToSettings()" [disabled]="selectedDictionariesCount == 0">{{ 'continue_game' | translate }}</button>
 </ion-footer>

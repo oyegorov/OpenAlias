@@ -18,7 +18,7 @@
                 <div class="discard">
                     <button ion-button round color="danger" outline icon-left (click)="discard()">
                         <ion-icon name="remove-circle"></ion-icon>
-                        Discard (-{{skipLastWord ? wordsPerPage - currentScreenScore - 1 : wordsPerPage - currentScreenScore}} penalty)
+                        {{ 'discard' | translate }} (-{{skipLastWord ? wordsPerPage - currentScreenScore - 1 : wordsPerPage - currentScreenScore}} {{ 'penalty' | translate }})
                     </button>
                 </div>
             </ion-col>
@@ -26,7 +26,7 @@
     </ion-grid>
 </ion-content>
 <ion-footer padding>
-    <button ion-button round full (click)="handleBackButton()" *ngIf="platform.is('core')">Back</button>
+    <button ion-button round full (click)="handleBackButton()" *ngIf="platform.is('core')">{{ 'back' | translate }}</button>
 
     <div style="width: 100%; text-align: center">
         <ion-chip>

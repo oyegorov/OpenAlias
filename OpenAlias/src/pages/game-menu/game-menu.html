@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Welcome</ion-title>
+        <ion-title>{{ 'welcome' | translate }}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -27,19 +27,19 @@
 
         <ion-row>
             <ion-col>
-                <button *ngIf="isGameRunning" ion-button round full (click)="continue()">Continue</button>
+                <button *ngIf="isGameRunning" ion-button round full (click)="continue()">{{ 'continue_game' | translate }}</button>
             </ion-col>
         </ion-row>
 
         <ion-row>
             <ion-col>
-                <button ion-button round full (click)="openTeams()">New Game</button>
+                <button ion-button round full (click)="openTeams()">{{ 'new_game' | translate }}</button>
             </ion-col>
         </ion-row>
 
         <ion-row>
             <ion-col>
-                <button ion-button round full (click)="exitGame()">Exit Game</button>
+                <button ion-button round full (click)="exitGame()">{{ 'exit_game' | translate }}</button>
             </ion-col>
         </ion-row>
     </ion-grid>

@@ -1,40 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>{{ 'settings' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
     <ion-list>
         <ion-item>
-            <ion-label>Round time</ion-label>
+            <ion-label>{{ 'round_time' | translate }}</ion-label>
             <ion-select [(ngModel)]="settings.roundDuration">
-                <ion-option [value]="15">15 seconds</ion-option>
-                <ion-option [value]="30">30 seconds</ion-option>
-                <ion-option [value]="45">45 seconds</ion-option>
-                <ion-option [value]="60">60 seconds</ion-option>
-                <ion-option [value]="90">1 minutes 30 seconds</ion-option>
-                <ion-option [value]="120">2 minutes</ion-option>
+                <ion-option [value]="15">15 {{ 'time_seconds' | translate }}</ion-option>
+                <ion-option [value]="30">30 {{ 'time_seconds' | translate }}</ion-option>
+                <ion-option [value]="45">45 {{ 'time_seconds' | translate }}</ion-option>
+                <ion-option [value]="60">60 {{ 'time_seconds' | translate }}</ion-option>
+                <ion-option [value]="90">1 {{ 'time_minute' | translate }} 30 {{ 'time_seconds' | translate }}</ion-option>
+                <ion-option [value]="120">2 {{ 'time_minutes' | translate }}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item style="color: black">
-            <ion-label>Words per page</ion-label>
+            <ion-label>{{ 'words_per_page' | translate }}</ion-label>
             <ion-select [(ngModel)]="settings.wordsPerPage" (ionChange)="wordsPerPageChanged()">
-                <ion-option [value]="1">One</ion-option>
-                <ion-option [value]="2">Two</ion-option>
-                <ion-option [value]="3">Three</ion-option>
-                <ion-option [value]="4">Four</ion-option>
-                <ion-option [value]="5">Five</ion-option>
-                <ion-option [value]="6">Six</ion-option>
-                <ion-option [value]="7">Seven</ion-option>
-                <ion-option [value]="8">Eight</ion-option>
+                <ion-option [value]="1">1</ion-option>
+                <ion-option [value]="2">2</ion-option>
+                <ion-option [value]="3">3</ion-option>
+                <ion-option [value]="4">4</ion-option>
+                <ion-option [value]="5">5</ion-option>
+                <ion-option [value]="6">6</ion-option>
+                <ion-option [value]="7">7</ion-option>
+                <ion-option [value]="8">8</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label>Skip last word</ion-label>
+            <ion-label>{{ 'skip_last_word' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="settings.skipLastWord" disabled="{{disableSkipLastWord}}"></ion-toggle>
         </ion-item>
     </ion-list>
 </ion-content>
 <ion-footer padding>
-    <button ion-button round full (click)="startGame()">Start Game</button>
+    <button ion-button round full (click)="startGame()">{{ 'start_game' | translate }}</button>
 </ion-footer>

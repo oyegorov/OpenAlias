@@ -1,12 +1,12 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Round {{roundNumber}} Start</ion-title>
+        <ion-title>{{ 'round_start' | translate:{round_number: roundNumber} }}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-list inset>
-        <h1 class="heading">Current Scores</h1>
+        <h1 class="heading">{{ 'current_scores' | translate }}</h1>
         <ion-item *ngFor="let playerScore of playerScores">
             <ion-icon name="people" icon-large></ion-icon> 
             <span class="padded">{{playerScore.player.name}}</span>
@@ -16,5 +16,5 @@
 </ion-content>
 
 <ion-footer padding>
-    <button ion-button round full (click)="startRound()">Start {{activePlayer.name}}</button>
+    <button ion-button round full (click)="startRound()">{{ 'start_player' | translate:{activePlayerName: activePlayer.name} }}</button>
 </ion-footer>

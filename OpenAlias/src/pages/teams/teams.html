@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Teams</ion-title>
+        <ion-title>{{ 'teams' | translate }}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -11,11 +11,11 @@
             <span class="padded">{{team}}</span>
             <ion-icon name="close" item-right (click)="deleteTeam(i)" *ngIf="selectedTeams.length > 2"></ion-icon>
         </ion-item>
-        <button ion-button round full (click)="addTeam()" [disabled]="selectedTeams.length > 5">Add Team</button>
+        <button ion-button round full (click)="addTeam()" [disabled]="selectedTeams.length > 5">{{ 'add_team' | translate }}</button>
     </ion-list>
 </ion-content>
 
 
 <ion-footer padding>
-    <button ion-button round full (click)="acceptTeams()">Continue</button>
+    <button ion-button round full (click)="acceptTeams()">{{ 'continue_game' | translate }}</button>
 </ion-footer>
