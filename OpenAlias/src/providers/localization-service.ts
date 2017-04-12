@@ -17,6 +17,7 @@ export class LocalizationService {
             this.storage.get('language').then((s) => {
                 if (s) {
                     this.translate.use(s);
+                    this.language = s;
                 } else {
                     var userLang = navigator.language.split('-')[0];
                     userLang = /(be|uk|ru)/gi.test(userLang) ? 'ru' : 'en';
