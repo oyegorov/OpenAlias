@@ -6,6 +6,7 @@ import { GameMenu } from '../pages/game-menu/game-menu';
 import { GameInfoPage } from '../pages/game-info/game-info';
 import { SettingsPage } from "../pages/settings/settings";
 import { TeamsPage } from "../pages/teams/teams";
+import { RulesPage } from "../pages/rules/rules";
 import { DictionariesSelectionPage } from "../pages/dictionaries-selection/dictionaries-selection"
 import { GameService } from '../providers/game-service';
 import { GameSettingsService } from '../providers/game-settings-service';
@@ -29,6 +30,7 @@ NgModule({
         Game,
         SettingsPage,
         TeamsPage,
+        RulesPage,
         DictionariesSelectionPage,
         RoundCorrectionsPage
     ],
@@ -50,6 +52,7 @@ NgModule({
         Game,
         SettingsPage,
         TeamsPage,
+        RulesPage,
         DictionariesSelectionPage,
         RoundCorrectionsPage
     ],

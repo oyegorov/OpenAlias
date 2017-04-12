@@ -26,5 +26,7 @@
   "difficulty0": "легкий",
   "difficulty1": "средний",
   "difficulty2": "сложный",
-  "difficulty3": "очень сложный"
+  "difficulty3": "очень сложный",
+  "rules": "Правила",
+  "rules_content": "(тут будут правила игры)"
 }

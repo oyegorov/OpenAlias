@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { TeamsPage } from "../teams/teams";
+import { RulesPage } from "../rules/rules";
 import { Game } from "../game/game";
 import { RoundCorrectionsPage } from "../round-corrections/round-corrections";
 import { GameService } from '../../providers/game-service';
@@ -33,6 +34,10 @@ export class GameMenu {
 
     openTeams() {
         this.navCtrl.push(TeamsPage);
+    }
+
+    openRules() {
+        this.navCtrl.push(RulesPage);
     }
 
     continue()

@@ -26,5 +26,7 @@
   "difficulty0": "easy",
   "difficulty1": "medium",
   "difficulty2": "hard",
-  "difficulty3": "very hard"
+  "difficulty3": "very hard",
+  "rules": "Rules",
+  "rules_content": "(game rules will be written here)"
 }
