@@ -16,7 +16,10 @@ export class LocalizationService {
                 if (s) {
                     this.translate.use(s);
                 } else {
-                    this.translate.use('en');
+                    var userLang = navigator.language.split('-')[0];
+                    userLang = /(be|uk|ru)/gi.test(userLang) ? 'ru' : 'en';
+
+                    this.translate.use(userLang);
                 }
             });
         });
