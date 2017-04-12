@@ -6,10 +6,13 @@
 <ion-content padding>
     <div padding>
         <ion-segment [(ngModel)]="language">
+            <ion-segment-button (ionSelect)="loadDictionaries('en')" value="en" *ngIf="localizationService.getLanguage() == 'en'">
+                {{ 'english' | translate }}
+            </ion-segment-button>
             <ion-segment-button (ionSelect)="loadDictionaries('ru')" value="ru">
                 {{ 'russian' | translate }}
             </ion-segment-button>
-            <ion-segment-button (ionSelect)="loadDictionaries('en')" value="en">
+            <ion-segment-button (ionSelect)="loadDictionaries('en')" value="en" *ngIf="localizationService.getLanguage() != 'en'">
                 {{ 'english' | translate }}
             </ion-segment-button>
         </ion-segment>

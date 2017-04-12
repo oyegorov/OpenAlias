@@ -5,6 +5,7 @@ import { DictionaryInfo } from '../../data/dictionaries'
 import { SettingsPage } from "../settings/settings";
 import { GameSettingsService } from "../../providers/game-settings-service";
 import { GameService } from "../../providers/game-service";
+import { LocalizationService } from "../../providers/localization-service";
 
 @Component({
     selector: 'page-dictionaries-selection',
@@ -14,12 +15,19 @@ export class DictionariesSelectionPage {
     public selectedDictionariesCount: number = 0;
     public checkStatus: any = {};
     public dictionaries: DictionaryInfo[];
-    public language: string = "ru";
+    public language: string;
 
-    constructor(private navCtrl: NavController, private navParams: NavParams, private wordService: WordService, private settingsService: GameSettingsService, private gameService: GameService) { }
+    constructor(private navCtrl: NavController,
+        private navParams: NavParams,
+        private wordService: WordService,
+        private settingsService: GameSettingsService,
+        private localizationService: LocalizationService,
+        private gameService: GameService) {
+        this.language = this.localizationService.getLanguage();
+    }
 
     ionViewDidLoad() {
-        this.loadDictionaries('ru');
+        this.loadDictionaries(this.language);
     }
 
     loadDictionaries(language: string) {

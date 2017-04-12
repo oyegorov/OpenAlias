@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class LocalizationService {
+    private language: string;
+
     constructor(private translate: TranslateService, private storage: Storage) {
         this.translate.setDefaultLang('en');
     }
@@ -19,6 +21,7 @@ export class LocalizationService {
                     var userLang = navigator.language.split('-')[0];
                     userLang = /(be|uk|ru)/gi.test(userLang) ? 'ru' : 'en';
 
+                    this.language = userLang;
                     this.translate.use(userLang);
                 }
             });
@@ -26,7 +29,13 @@ export class LocalizationService {
     }
 
     public setLanguage(language: string): void {
+        this.language = language;
+
         this.translate.use(language);
         this.storage.set('language', language);
+    }
+
+    public getLanguage(): string {
+        return this.language;
     }
 }
