@@ -15,7 +15,7 @@
   "words_per_page": "Words per page",
   "review_round_score": "Review round score",
   "current_scores": "Current scores",
-  "round_start": "Round {{round_number}} start",
+  "round_start": "Round {{round_number}}",
   "start_player": "Start {{activePlayerName}}",
   "russian": "Russian",
   "english": "English",

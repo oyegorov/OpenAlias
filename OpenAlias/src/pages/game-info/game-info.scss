@@ -6,4 +6,10 @@ page-game-info {
     .padded {
         margin-left: 5px;
     }
+
+    .vertical-align-content > * {
+        display: flex !important;
+        align-content: center !important;
+        align-items: center !important;
+    }
 }

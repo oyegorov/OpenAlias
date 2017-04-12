@@ -15,7 +15,7 @@
   "words_per_page": "Слов на странице",
   "review_round_score": "Корректировка очков",
   "current_scores": "Текущий счет",
-  "round_start": "Начало раунда {{round_number}}",
+  "round_start": "Раунд {{round_number}}",
   "start_player": "Начать - {{activePlayerName}}",
   "russian": "Русский",
   "english": "Английский",

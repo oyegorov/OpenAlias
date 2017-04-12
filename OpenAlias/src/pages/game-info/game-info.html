@@ -1,18 +1,24 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{ 'round_start' | translate:{round_number: roundNumber} }}</ion-title>
+        <ion-title>{{ 'current_scores' | translate }}</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list inset>
-        <h1 class="heading">{{ 'current_scores' | translate }}</h1>
-        <ion-item *ngFor="let playerScore of playerScores">
-            <ion-icon name="people" icon-large></ion-icon> 
-            <span class="padded">{{playerScore.player.name}}</span>
-            <span item-right>{{playerScore.currentScore}}({{playerScore.currentRoundScore}})</span>
-        </ion-item>
-    </ion-list>
+<ion-content padding class="vertical-align-content">
+    <ion-grid>
+        <ion-row>
+            <ion-col style="text-align: center">
+                <ion-list inset>
+                    <h1 class="heading">{{ 'round_start' | translate:{round_number: roundNumber} }} - {{ activePlayer.name }}</h1>
+                    <ion-item *ngFor="let playerScore of playerScores">
+                        <ion-icon name="people" icon-large></ion-icon>
+                        <span class="padded">{{playerScore.player.name}}</span>
+                        <span item-right>{{playerScore.currentScore}}({{playerScore.currentRoundScore}})</span>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
 
 <ion-footer padding>
