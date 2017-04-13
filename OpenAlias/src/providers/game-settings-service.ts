@@ -16,6 +16,8 @@ export class GameSettingsService {
         this.settings = new Settings();
         this.settings.roundDuration = 45;
         this.settings.wordsPerPage = 6;
+        this.settings.scoreToWin = 100;
+        this.settings.rounds = 0;
 
         storage.ready().then(() => {
             storage.get('settings').then((s) => {

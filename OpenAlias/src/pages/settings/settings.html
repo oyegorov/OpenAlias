@@ -1,12 +1,26 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'settings' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'settings' | translate }}</ion-title>
+    </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="black-text">
     <ion-list>
         <ion-item>
-            <ion-label>{{ 'round_time' | translate }}</ion-label>
+            <ion-label class="range-header">Score to win: {{ settings.scoreToWin == 0 ? 'No limit' : settings.scoreToWin }}</ion-label>
+            <ion-range min="0" max="200" [(ngModel)]="settings.scoreToWin">
+                <ion-label range-left class="grey-text">No limit</ion-label>
+                <ion-label range-right class="grey-text">200</ion-label>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-label class="range-header">Total rounds: {{ settings.rounds == 0 ? 'No limit' : settings.rounds }}</ion-label>
+            <ion-range min="0" max="50" [(ngModel)]="settings.rounds">
+                <ion-label range-left class="grey-text">No limit</ion-label>
+                <ion-label range-right class="grey-text">50</ion-label>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-label class="black-text">{{ 'round_time' | translate }}</ion-label>
             <ion-select [(ngModel)]="settings.roundDuration">
                 <ion-option [value]="15">15 {{ 'time_seconds' | translate }}</ion-option>
                 <ion-option [value]="30">30 {{ 'time_seconds' | translate }}</ion-option>
@@ -16,8 +30,8 @@
                 <ion-option [value]="120">2 {{ 'time_minutes' | translate }}</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item style="color: black">
-            <ion-label>{{ 'words_per_page' | translate }}</ion-label>
+        <ion-item>
+            <ion-label class="black-text">{{ 'words_per_page' | translate }}</ion-label>
             <ion-select [(ngModel)]="settings.wordsPerPage" (ionChange)="wordsPerPageChanged()">
                 <ion-option [value]="1">1</ion-option>
                 <ion-option [value]="2">2</ion-option>
@@ -30,7 +44,7 @@
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label>{{ 'skip_last_word' | translate }}</ion-label>
+            <ion-label class="black-text">{{ 'skip_last_word' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="settings.skipLastWord" disabled="{{disableSkipLastWord}}"></ion-toggle>
         </ion-item>
     </ion-list>
