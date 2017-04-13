@@ -6,16 +6,16 @@
 <ion-content padding class="black-text">
     <ion-list>
         <ion-item>
-            <ion-label class="range-header">Score to win: {{ settings.scoreToWin == 0 ? 'No limit' : settings.scoreToWin }}</ion-label>
+            <ion-label class="range-header">{{ 'score_to_win' | translate }}: {{ settings.scoreToWin == 0 ? '&infin;' : settings.scoreToWin }}</ion-label>
             <ion-range min="0" max="200" [(ngModel)]="settings.scoreToWin">
-                <ion-label range-left class="grey-text">No limit</ion-label>
+                <ion-label range-left class="grey-text">&infin;</ion-label>
                 <ion-label range-right class="grey-text">200</ion-label>
             </ion-range>
         </ion-item>
         <ion-item>
-            <ion-label class="range-header">Total rounds: {{ settings.rounds == 0 ? 'No limit' : settings.rounds }}</ion-label>
+            <ion-label class="range-header">{{ 'total_rounds' | translate }}: {{ settings.rounds == 0 ? '&infin;' : settings.rounds }}</ion-label>
             <ion-range min="0" max="50" [(ngModel)]="settings.rounds">
-                <ion-label range-left class="grey-text">No limit</ion-label>
+                <ion-label range-left class="grey-text">&infin;</ion-label>
                 <ion-label range-right class="grey-text">50</ion-label>
             </ion-range>
         </ion-item>

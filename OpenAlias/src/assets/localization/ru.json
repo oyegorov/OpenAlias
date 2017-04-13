@@ -28,5 +28,7 @@
   "difficulty2": "сложный",
   "difficulty3": "очень сложный",
   "rules": "Правила",
-  "rules_content": "(тут будут правила игры)"
+  "rules_content": "(тут будут правила игры)",
+  "score_to_win": "Очков для победы",
+  "total_rounds": "Всего раундов"
 }
