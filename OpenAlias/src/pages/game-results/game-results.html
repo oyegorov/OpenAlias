@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'game_results' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="vertical-align-content">
+    <ion-grid>
+        <ion-row>
+            <ion-col style="text-align: center">
+                <ion-list inset>
+                    <h1 class="heading">{{ isTie ? 'tie' : 'victory' | translate:{winner: winner.name} }}</h1>
+                    <ion-item *ngFor="let playerScore of playerScores">
+                        <ion-icon name="people" icon-large></ion-icon>
+                        <span class="padded" [style.fontWeight]="!isTie && playerScore.player == winner ? 'bold' : 'normal'">{{playerScore.player.name}}</span>
+                        <span item-right>{{playerScore.currentScore}}</span>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer padding>
+    <button ion-button round full (click)="finishGame()">{{ 'finish_game' | translate }}</button>
+</ion-footer>

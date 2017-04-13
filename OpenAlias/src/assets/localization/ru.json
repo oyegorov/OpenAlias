@@ -30,5 +30,9 @@
   "rules": "Правила",
   "rules_content": "(тут будут правила игры)",
   "score_to_win": "Очков для победы",
-  "total_rounds": "Всего раундов"
+  "total_rounds": "Всего раундов",
+  "finish_game": "Завершить игру",
+  "game_results": "Результаты",
+  "tie": "Ничья!",
+  "victory": "Победа: {{winner}}!"
 }

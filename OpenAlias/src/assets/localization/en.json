@@ -30,5 +30,9 @@
   "rules": "Rules",
   "rules_content": "(game rules will be written here)",
   "score_to_win": "Score to win",
-  "total_rounds": "Total rounds"
+  "total_rounds": "Total rounds",
+  "finish_game": "Finish game",
+  "game_results": "Results",
+  "tie": "Tie!",
+  "victory": "Victory: {{winner}}!"
 }
