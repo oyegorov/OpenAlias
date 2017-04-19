@@ -11,7 +11,7 @@
             <ion-col style="text-align: center">
                 <ion-list inset>
                     <h1 class="heading" *ngIf="gameStatus == GameStatus.Tie">{{ 'tie' | translate }}</h1>
-                    <h1 class="heading" *ngIf="gameStatus == GameStatus.Victory">{{ 'victory' | translate:{winner: playerScores[0].player.name} }}</h1>
+                    <h1 class="heading" *ngIf="gameStatus == GameStatus.Victory">{{ 'victory' | translate:{winner: sortedPlayerScores[0].player.name} }}</h1>
                     <h1 class="heading" *ngIf="gameStatus == GameStatus.InProgress">{{ 'round_start' | translate:{round_number: roundNumber} }}</h1>
                     <ion-item *ngFor="let playerScore of playerScores">
                         <ion-icon name="people" icon-large></ion-icon>

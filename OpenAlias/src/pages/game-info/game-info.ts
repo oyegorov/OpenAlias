@@ -18,6 +18,7 @@ import { GameMenu } from "../game-menu/game-menu";
 export class GameInfoPage {
     GameStatus = GameStatus;
     playerScores: PlayerScores[];
+    sortedPlayerScores: PlayerScores[];
     activePlayer: Player;
     startingPlayer: Player;
     roundNumber: number;
@@ -30,7 +31,8 @@ export class GameInfoPage {
 
     ionViewDidLoad() {
         this.startingPlayer = this.gameService.getPlayerScores()[0].player;
-        this.playerScores = this.gameService.getPlayerScores().concat().sort((p1, p2) => p2.currentScore - p1.currentScore);;
+        this.playerScores = this.gameService.getPlayerScores();
+        this.sortedPlayerScores = this.playerScores.concat().sort((p1, p2) => p2.currentScore - p1.currentScore);;
         this.activePlayer = this.gameService.getActivePlayer();
         this.roundNumber = this.gameService.roundNumber;
 
@@ -43,11 +45,11 @@ export class GameInfoPage {
         if (this.activePlayer !== this.startingPlayer)
             return GameStatus.InProgress;
 
-        let equalScores: boolean = this.playerScores[0].currentScore === this.playerScores[1].currentScore;
+        let equalScores: boolean = this.sortedPlayerScores[0].currentScore === this.sortedPlayerScores[1].currentScore;
 
         if (settings.rounds > 0 && this.roundNumber === settings.rounds + 1)
             return equalScores ? GameStatus.Tie : GameStatus.Victory;
-        if (settings.scoreToWin > 0 && this.playerScores.some(ps => ps.currentScore >= settings.scoreToWin))
+        if (settings.scoreToWin > 0 && this.sortedPlayerScores[0].currentScore >= settings.scoreToWin)
             return equalScores ? GameStatus.Tie : GameStatus.Victory;
 
         return GameStatus.InProgress;
