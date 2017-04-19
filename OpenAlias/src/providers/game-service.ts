@@ -25,6 +25,13 @@ export class GameService {
         this.roundNumber = 1;
     }
 
+    finishGame() {
+        this.isGameRunning = false;
+        this.isGameResuming = false;
+        this.roundNumber = 1;
+        this.roundState = null;
+    }
+
     endRound(roundState: RoundState): void {
         this.roundState = roundState;
     }
