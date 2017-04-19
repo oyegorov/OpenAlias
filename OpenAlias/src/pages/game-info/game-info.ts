@@ -45,7 +45,7 @@ export class GameInfoPage {
 
         let equalScores: boolean = this.playerScores[0].currentScore === this.playerScores[1].currentScore;
 
-        if (settings.rounds > 0 && this.roundNumber === settings.rounds)
+        if (settings.rounds > 0 && this.roundNumber === settings.rounds + 1)
             return equalScores ? GameStatus.Tie : GameStatus.Victory;
         if (settings.scoreToWin > 0 && this.playerScores.some(ps => ps.currentScore >= settings.scoreToWin))
             return equalScores ? GameStatus.Tie : GameStatus.Victory;
