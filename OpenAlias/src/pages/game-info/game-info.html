@@ -1,6 +1,7 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{ 'current_scores' | translate }}</ion-title>
+        <ion-title *ngIf="gameStatus == GameStatus.InProgress">{{ 'current_scores' | translate }}</ion-title>
+        <ion-title *ngIf="gameStatus != GameStatus.InProgress">{{ 'game_results' | translate }}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -14,7 +15,7 @@
                     <h1 class="heading" *ngIf="gameStatus == GameStatus.InProgress">{{ 'round_start' | translate:{round_number: roundNumber} }}</h1>
                     <ion-item *ngFor="let playerScore of playerScores">
                         <ion-icon name="people" icon-large></ion-icon>
-                        <span class="padded">{{playerScore.player.name}}</span>
+                        <span class="padded" [style.fontWeight]="gameStatus == GameStatus.InProgress && playerScore.player == activePlayer ? 'bold' : 'normal'">{{playerScore.player.name}}</span>
                         <span item-right>{{playerScore.currentScore}}({{playerScore.currentRoundScore}})</span>
                     </ion-item>
                 </ion-list>

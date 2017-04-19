@@ -30,7 +30,7 @@ export class GameInfoPage {
 
     ionViewDidLoad() {
         this.startingPlayer = this.gameService.getPlayerScores()[0].player;
-        this.playerScores = this.gameService.getPlayerScores().sort((p1, p2) => p2.currentScore - p1.currentScore);;
+        this.playerScores = this.gameService.getPlayerScores().concat().sort((p1, p2) => p2.currentScore - p1.currentScore);;
         this.activePlayer = this.gameService.getActivePlayer();
         this.roundNumber = this.gameService.roundNumber;
 
