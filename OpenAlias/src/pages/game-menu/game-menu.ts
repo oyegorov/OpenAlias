@@ -43,7 +43,7 @@ export class GameMenu {
     continue()
     {
         this.gameService.resume();
-        this.navCtrl.setRoot(this.gameService.roundState.timeLeft > 0 ? Game : RoundCorrectionsPage);
+        this.navCtrl.setRoot(this.navParams.get('page'));
     }
 
     exitGame() {

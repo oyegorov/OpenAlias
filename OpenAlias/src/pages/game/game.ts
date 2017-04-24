@@ -44,7 +44,8 @@ export class Game {
     }
 
     handleBackButton() {
-       this.pauseGame();
+        if (this.timeLeft > 0)
+            this.pauseGame();
     }
 
     ionViewDidLoad() {
@@ -143,7 +144,7 @@ export class Game {
         clearInterval(this.timer);
 
         this.gameService.pause(this.getRoundState());
-        this.navCtrl.setRoot(GameMenu);
+        this.navCtrl.setRoot(GameMenu, { page: Game });
     }
 
     getRoundState() : RoundState {

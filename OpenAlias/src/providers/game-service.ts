@@ -41,6 +41,9 @@ export class GameService {
     }
 
     start() {
+        if (!this.isGameResuming)
+            this.roundNumber = 1;
+
         this.isGameRunning = true;
         this.isGameResuming = false;
     }

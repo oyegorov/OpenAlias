@@ -43,7 +43,7 @@ export class RoundCorrectionsPage {
 
     handleBackButton() {
         this.gameService.pause(this.roundState);
-        this.navCtrl.setRoot(GameMenu);
+        this.navCtrl.setRoot(GameMenu, { page: RoundCorrectionsPage });
     }
 
     proceed() {

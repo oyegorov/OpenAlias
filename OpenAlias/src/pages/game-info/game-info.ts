@@ -55,6 +55,10 @@ export class GameInfoPage {
         return GameStatus.InProgress;
     }
 
+    handleBackButton() {
+        this.navCtrl.setRoot(GameMenu, { page: GameInfoPage });
+    }
+
     startRound() {
         this.navCtrl.setRoot(Game);
     }
