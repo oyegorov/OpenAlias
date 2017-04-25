@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Platform, NavController, NavParams } from 'ionic-angular';
 
 import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
@@ -27,7 +27,13 @@ export class GameInfoPage {
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         private gameService: GameService,
-        private gameSettingsService: GameSettingsService) { }
+        private gameSettingsService: GameSettingsService,
+        private platform: Platform) {
+
+        this.platform.registerBackButtonAction(() => {
+            this.handleBackButton();
+        }, 1);
+    }
 
     ionViewDidLoad() {
         this.startingPlayer = this.gameService.getPlayerScores()[0].player;

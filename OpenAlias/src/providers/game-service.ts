@@ -14,19 +14,16 @@ export class GameService {
     private playerScores: PlayerScores[];
     private currentPlayerIndex: number;
     private timeLeft: number;
-    public isGameRunning: boolean;
     public isGameResuming: boolean;
     public roundState: RoundState;
     public roundNumber: number;
 
     constructor(private settingsService: GameSettingsService) {
-        this.isGameRunning = false;
         this.isGameResuming = false;
         this.roundNumber = 1;
     }
 
     finishGame() {
-        this.isGameRunning = false;
         this.isGameResuming = false;
         this.roundNumber = 1;
         this.roundState = null;
@@ -36,7 +33,8 @@ export class GameService {
         this.roundState = roundState;
     }
 
-    pause(roundState:RoundState): void {
+    pause(roundState: RoundState): void {
+        this.isGameResuming = true;
         this.roundState = roundState;
     }
 
@@ -44,12 +42,7 @@ export class GameService {
         if (!this.isGameResuming)
             this.roundNumber = 1;
 
-        this.isGameRunning = true;
         this.isGameResuming = false;
-    }
-
-    resume() {
-        this.isGameResuming = true;
     }
 
     addPlayers(players: Player[]) {

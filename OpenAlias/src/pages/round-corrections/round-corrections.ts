@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { RoundState } from "../../model/round-state";
 import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
@@ -14,8 +14,10 @@ export class RoundCorrectionsPage {
     public totalScore: number;
     public roundState: RoundState;
 
-    constructor(public navCtrl: NavController, private gameService: GameService) {
-        this.roundState = this.gameService.roundState;
+    constructor(public navCtrl: NavController, private gameService: GameService, private platform: Platform) {
+        this.platform.registerBackButtonAction(() => {
+            this.handleBackButton();
+        }, 1);
     }
 
     ionViewDidLoad() {
@@ -42,7 +44,6 @@ export class RoundCorrectionsPage {
     }
 
     handleBackButton() {
-        this.gameService.pause(this.roundState);
         this.navCtrl.setRoot(GameMenu, { page: RoundCorrectionsPage });
     }
 

@@ -29,10 +29,11 @@ export class GameMenu {
         private platform: Platform,
         private localizationService: LocalizationService) {
 
-        this.isGameRunning = gameService.isGameRunning;
+        this.isGameRunning = this.navParams.get('page') != null;
     }
 
-    openTeams() {
+    newGame() {
+        this.gameService.finishGame();
         this.navCtrl.push(TeamsPage);
     }
 
@@ -42,7 +43,6 @@ export class GameMenu {
 
     continue()
     {
-        this.gameService.resume();
         this.navCtrl.setRoot(this.navParams.get('page'));
     }
 
