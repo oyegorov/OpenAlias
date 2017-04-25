@@ -17,8 +17,8 @@ import { Platform } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-game-menu',
-  templateUrl: 'game-menu.html'
+    selector: 'page-game-menu',
+    templateUrl: 'game-menu.html'
 })
 export class GameMenu {
     private isGameRunning: boolean;
@@ -28,21 +28,28 @@ export class GameMenu {
         private gameService: GameService,
         private platform: Platform,
         private localizationService: LocalizationService) {
-
-        this.isGameRunning = this.navParams.get('page') != null;
     }
 
     newGame() {
         this.gameService.finishGame();
+        this.isGameRunning = false;
+
+        this.navCtrl.remove(0, this.navCtrl.getViews().length);
         this.navCtrl.push(TeamsPage);
+    }
+
+    handleBackButton() {
+        if (!this.isGameRunning)
+            this.exitGame();
+        else
+            this.continue();
     }
 
     openRules() {
         this.navCtrl.push(RulesPage);
     }
 
-    continue()
-    {
+    continue() {
         this.navCtrl.setRoot(this.navParams.get('page'));
     }
 
@@ -54,6 +61,7 @@ export class GameMenu {
         this.localizationService.setLanguage(language);
     }
 
-  ionViewDidLoad() {
-  }
+    ionViewDidLoad() {
+        this.isGameRunning = this.gameService.roundState != null;
+    }
 }

@@ -15,9 +15,6 @@ export class RoundCorrectionsPage {
     public roundState: RoundState;
 
     constructor(public navCtrl: NavController, private gameService: GameService, private platform: Platform) {
-        this.platform.registerBackButtonAction(() => {
-            this.handleBackButton();
-        }, 1);
     }
 
     ionViewDidLoad() {

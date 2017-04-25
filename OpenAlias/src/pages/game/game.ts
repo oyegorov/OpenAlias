@@ -36,10 +36,6 @@ export class Game {
                 private gameSettingsService: GameSettingsService,
                 private wordService: WordService,
                 private platform: Platform) {
-        this.platform.registerBackButtonAction(() => {
-            this.handleBackButton();
-        }, 1);
-
         this.warningTimes = [2, 3, 4, 11];
     }
 

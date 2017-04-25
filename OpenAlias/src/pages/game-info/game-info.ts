@@ -29,10 +29,6 @@ export class GameInfoPage {
         private gameService: GameService,
         private gameSettingsService: GameSettingsService,
         private platform: Platform) {
-
-        this.platform.registerBackButtonAction(() => {
-            this.handleBackButton();
-        }, 1);
     }
 
     ionViewDidLoad() {

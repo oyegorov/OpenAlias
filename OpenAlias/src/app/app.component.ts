@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ViewController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Game } from '../pages/game/game';
@@ -33,5 +33,18 @@ export class MyApp {
                 }, 100);
             }
         });
+
+        this.platform.registerBackButtonAction(() => {
+            let activeView: ViewController = this.nav.getActive();
+
+            if (activeView != null) {
+                if (this.nav.canGoBack()) {
+                    this.nav.pop();
+                } else if (typeof activeView.instance.handleBackButton === 'function')
+                    activeView.instance.handleBackButton();
+
+                else this.nav.parent.select(0);
+            }
+        }, 1);
     }
 }
