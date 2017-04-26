@@ -14,7 +14,7 @@
         </ion-item>
         <ion-item>
             <ion-label class="range-header">{{ 'total_rounds' | translate }}: {{ settings.rounds == 0 ? '&infin;' : settings.rounds }}</ion-label>
-            <ion-range min="0" max="50" [(ngModel)]="settings.rounds">
+            <ion-range step="2" min="0" max="50" [(ngModel)]="settings.rounds">
                 <ion-label range-left class="grey-text">&infin;</ion-label>
                 <ion-label range-right class="grey-text">50</ion-label>
             </ion-range>
