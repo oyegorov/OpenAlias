@@ -39,7 +39,7 @@ export class GameService {
     }
 
     start() {
-        if (!this.isGameResuming)
+        if (!this.roundState)
             this.roundNumber = 1;
 
         this.isGameResuming = false;
