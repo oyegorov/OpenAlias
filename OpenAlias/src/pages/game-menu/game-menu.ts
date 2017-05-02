@@ -34,7 +34,10 @@ export class GameMenu {
         this.gameService.finishGame();
         this.isGameRunning = false;
 
-        this.navCtrl.remove(0, this.navCtrl.getViews().length);
+        this.navCtrl.remove(0, this.navCtrl.getViews().length).catch(e => {
+            console.log(e); 
+        });
+
         this.navCtrl.push(TeamsPage);
     }
 
