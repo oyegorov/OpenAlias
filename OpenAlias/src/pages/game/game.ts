@@ -25,7 +25,6 @@ export class Game {
     private currentScreenScore: number;
     private totalScore: number;
     private timer: number;
-    private warningTimes: number[];
 
     currentScreenWords: any[];
     words: any[];
@@ -36,11 +35,10 @@ export class Game {
                 private wordService: WordService,
                 private platform: Platform,
                 private soundService: SoundService) {
-        this.warningTimes = [2, 3, 4, 11];
     }
 
     handleBackButton() {
-        if (this.timeLeft > 0)
+        if (this.timeLeft > 1)
             this.pauseGame();
     }
 
@@ -65,11 +63,19 @@ export class Game {
             this.initializeWords();
         }
 
+        if (this.timeLeft <= 8) {
+            this.soundService.play('ticking');
+        }
+
         this.timer = setInterval(() => {
             if (this.timeLeft !== 0) {
+                if (this.timeLeft == 9) {
+                    this.soundService.play('ticking');
+                }
 
-                if (this.warningTimes.some(x => x === this.timeLeft)) {
-                    this.soundService.play('warning');
+                if (this.timeLeft == 2) {
+                    this.soundService.stop('ticking');
+                    this.soundService.play('alarm');
                 }
 
                 this.timeLeft -= 1;
@@ -86,7 +92,7 @@ export class Game {
     }
 
     itemChecked(item) {
-        this.soundService.play('ding');
+        this.soundService.play(item.checked ? 'cancel' : 'ding');
         
         item.checked = !item.checked;
         this.currentScreenScore += item.checked ? 1 : -1;
@@ -99,6 +105,8 @@ export class Game {
     }
 
     discard() {
+        this.soundService.play('skip');
+
         let penalty: number = this.skipLastWord ? this.wordsPerPage - this.currentScreenScore - 1 : this.wordsPerPage - this.currentScreenScore;
 
         this.currentScreenScore -= penalty;
@@ -133,7 +141,11 @@ export class Game {
     }
 
     pauseGame() {
+
         clearInterval(this.timer);
+
+        this.soundService.stop('ticking');
+        this.soundService.stop('alarm');
 
         this.gameService.pause(this.getRoundState());
         this.navCtrl.setRoot(GameMenu, { page: Game });

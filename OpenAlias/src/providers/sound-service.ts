@@ -14,7 +14,7 @@ export class SoundService {
     }
 
     public preloadSound(id: string, fileName: string) {
-        NativeAudio.preloadComplex(id, 'assets/audio/' + fileName, 1, 1, 0);
+        NativeAudio.preloadComplex(id, 'assets/audio/' + fileName, 0.5, 1, 0);
         this.loadedSounds.push(id);
     }
 

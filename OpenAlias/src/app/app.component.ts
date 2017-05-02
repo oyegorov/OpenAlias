@@ -52,7 +52,10 @@ export class MyApp {
     }
 
     private preloadSounds() {
-        this.soundService.preloadSound('ding', 'ding.wav');
-        this.soundService.preloadSound('warning', 'warning.wav');
+        this.soundService.preloadSound('ding', 'ding.mp3');
+        this.soundService.preloadSound('skip', 'skip.mp3');
+        this.soundService.preloadSound('cancel', 'cancel.mp3');
+        this.soundService.preloadSound('ticking', 'ticking.mp3');
+        this.soundService.preloadSound('alarm', 'alarm.mp3');
     }
 }
