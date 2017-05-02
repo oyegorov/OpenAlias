@@ -9,10 +9,9 @@ import { GameMenu } from '../game-menu/game-menu';
 import { GameService } from '../../providers/game-service';
 import { GameSettingsService } from '../../providers/game-settings-service';
 import { WordService } from '../../providers/word-service';
+import { SoundService } from '../../providers/sound-service';
 
 import { RoundState } from "../../model/round-state";
-
-import { NativeAudio } from 'ionic-native';
 
 @Component({
     selector: 'game-page',
@@ -35,7 +34,8 @@ export class Game {
                 private gameService: GameService,
                 private gameSettingsService: GameSettingsService,
                 private wordService: WordService,
-                private platform: Platform) {
+                private platform: Platform,
+                private soundService: SoundService) {
         this.warningTimes = [2, 3, 4, 11];
     }
 
@@ -45,10 +45,6 @@ export class Game {
     }
 
     ionViewDidLoad() {
-
-        NativeAudio.preloadSimple('ding', 'assets/audio/ding.wav');
-        NativeAudio.preloadSimple('warning', 'assets/audio/warning.wav');
-
         this.totalScore = 0;
         this.timeLeft = this.gameSettingsService.getSettings().roundDuration;
 
@@ -73,7 +69,7 @@ export class Game {
             if (this.timeLeft !== 0) {
 
                 if (this.warningTimes.some(x => x === this.timeLeft)) {
-                    NativeAudio.play('warning');
+                    this.soundService.play('warning');
                 }
 
                 this.timeLeft -= 1;
@@ -90,7 +86,7 @@ export class Game {
     }
 
     itemChecked(item) {
-        NativeAudio.play('ding');
+        this.soundService.play('ding');
         
         item.checked = !item.checked;
         this.currentScreenScore += item.checked ? 1 : -1;

@@ -34,5 +34,6 @@
   "finish_game": "Завершить игру",
   "game_results": "Результаты",
   "tie": "Ничья!",
-  "victory": "Победа: {{winner}}!"
+  "victory": "Победа: {{winner}}!",
+  "volume": "Громкость звука"
 }

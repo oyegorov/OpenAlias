@@ -4,4 +4,5 @@
     rounds: number;
     scoreToWin: number;
     skipLastWord: boolean;
+    volume: number;
 }

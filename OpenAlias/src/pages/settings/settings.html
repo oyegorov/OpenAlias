@@ -47,6 +47,13 @@
             <ion-label class="black-text">{{ 'skip_last_word' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="settings.skipLastWord" disabled="{{disableSkipLastWord}}"></ion-toggle>
         </ion-item>
+        <ion-item>
+            <ion-label class="range-header">{{ 'volume' | translate }}: {{ settings.volume }}</ion-label>
+            <ion-range step="1" min="0" max="10" [(ngModel)]="settings.volume">
+                <ion-label range-left class="grey-text">0</ion-label>
+                <ion-label range-right class="grey-text">10</ion-label>
+            </ion-range>
+        </ion-item>
     </ion-list>
 </ion-content>
 <ion-footer padding>

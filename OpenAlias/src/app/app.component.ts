@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { Game } from '../pages/game/game';
 import { GameMenu } from '../pages/game-menu/game-menu';
 import { LocalizationService } from '../providers/localization-service';
+import { SoundService } from '../providers/sound-service';
 
 @Component({
     templateUrl: 'app.html'
@@ -16,7 +17,7 @@ export class MyApp {
 
     pages: Array<{ title: string, component: any }>;
 
-    constructor(public platform: Platform, public localizationService: LocalizationService) {
+    constructor(public platform: Platform, public localizationService: LocalizationService, public soundService: SoundService) {
         this.initializeApp();
     }
 
@@ -32,6 +33,8 @@ export class MyApp {
                     Splashscreen.hide();
                 }, 100);
             }
+
+            this.preloadSounds();
         });
 
         this.platform.registerBackButtonAction(() => {
@@ -46,5 +49,10 @@ export class MyApp {
                 else this.nav.parent.select(0);
             }
         }, 1);
+    }
+
+    private preloadSounds() {
+        this.soundService.preloadSound('ding', 'ding.wav');
+        this.soundService.preloadSound('warning', 'warning.wav');
     }
 }

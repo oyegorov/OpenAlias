@@ -34,5 +34,6 @@
   "finish_game": "Finish game",
   "game_results": "Results",
   "tie": "Tie!",
-  "victory": "Victory: {{winner}}!"
+  "victory": "Victory: {{winner}}!",
+  "volume": "Sound volume"
 }
