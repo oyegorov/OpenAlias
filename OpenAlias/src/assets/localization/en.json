@@ -35,5 +35,6 @@
   "game_results": "Results",
   "tie": "Tie!",
   "victory": "Victory: {{winner}}!",
-  "volume": "Sound volume"
+  "volume": "Sound volume",
+  "about": "Open Alias, v0.0.1"
 }
