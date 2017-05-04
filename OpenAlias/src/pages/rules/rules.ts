@@ -7,5 +7,5 @@ import { LocalizationService } from "../../providers/localization-service";
     templateUrl: 'rules.html'
 })
 export class RulesPage {
-    constructor(public navCtrl: NavController, public navParams: NavParams, private localizationService: LocalizationService) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public localizationService: LocalizationService) { }
 }
