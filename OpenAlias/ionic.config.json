@@ -1,6 +1,6 @@
 {
-  "name": "$safeappid$",
-  "app_id": "",
+  "name": "Open Alias",
+  "app_id": "a4070745",
   "v2": true,
   "typescript": true
 }
