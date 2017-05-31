@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.skyclown.openalias" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.skyclown.openalias" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Open Alias</name>
   <description>Mobile game where the objective of the players is to explain words to each other</description>
   <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">D-Bills Inc.</author>

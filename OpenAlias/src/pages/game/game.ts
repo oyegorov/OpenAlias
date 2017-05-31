@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { Platform, NavController, NavParams } from 'ionic-angular';
+import { Platform, NavController, NavParams, Navbar } from 'ionic-angular';
 
 import { GameInfoPage } from '../game-info/game-info';
 import { RoundCorrectionsPage } from '../round-corrections/round-corrections';
@@ -18,7 +18,7 @@ import { RoundState } from "../../model/round-state";
     templateUrl: 'game.html'
 })
 export class Game {
-
+    @ViewChild(Navbar) navBar: Navbar;
     private timeLeft: number;
     private wordsPerPage: number;
     private skipLastWord: boolean;
@@ -84,9 +84,14 @@ export class Game {
 
                 this.gameService.endRound(this.getRoundState());
 
-                this.navCtrl.setRoot(RoundCorrectionsPage);
+                this.navCtrl.setPages([{ page: GameMenu, params: { page: RoundCorrectionsPage } }, { page: RoundCorrectionsPage }]);
             }
         }, 1000);
+
+
+        this.navBar.backButtonClick = (e: UIEvent) => {
+            this.handleBackButton();
+        }
 
         this.gameService.start();
     }
@@ -141,7 +146,6 @@ export class Game {
     }
 
     pauseGame() {
-
         clearInterval(this.timer);
 
         this.soundService.stop('ticking');

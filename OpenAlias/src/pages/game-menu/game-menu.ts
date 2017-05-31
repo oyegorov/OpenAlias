@@ -53,7 +53,7 @@ export class GameMenu {
     }
 
     continue() {
-        this.navCtrl.setRoot(this.navParams.get('page'));
+        this.navCtrl.setPages([{ page: GameMenu, params: { page: this.navParams.get('page') } }, { page: this.navParams.get('page') }]);
     }
 
     exitGame() {
@@ -65,6 +65,6 @@ export class GameMenu {
     }
 
     ionViewDidLoad() {
-        this.isGameRunning = this.gameService.roundState != null;
+        this.isGameRunning = this.navParams.get('page') != null;
     }
 }

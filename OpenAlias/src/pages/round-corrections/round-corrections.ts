@@ -47,7 +47,8 @@ export class RoundCorrectionsPage {
     proceed() {
         this.gameService.addScore(this.totalScore);
         this.gameService.changePlayer();
-        this.navCtrl.setRoot(GameInfoPage);
+
+        this.navCtrl.setPages([{ page: GameMenu, params: { page: GameInfoPage } }, { page: GameInfoPage }]);
     }
 
     private updateTotalScore() {

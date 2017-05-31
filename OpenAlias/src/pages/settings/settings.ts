@@ -4,6 +4,7 @@ import { GameSettingsService } from '../../providers/game-settings-service';
 import { SoundService } from '../../providers/sound-service';
 import { Settings } from '../../model/settings';
 import { GameInfoPage } from '../game-info/game-info';
+import { GameMenu } from '../game-menu/game-menu';
 
 @Component({
     selector: 'page-settings',
@@ -24,7 +25,7 @@ export class SettingsPage {
         this.gameSettingsService.setSettings(this.settings);
         this.soundService.setVolume(this.settings.volume / 10);
 
-        this.navCtrl.setRoot(GameInfoPage);
+        this.navCtrl.setPages([{ page: GameMenu, params: { page: GameInfoPage } }, { page: GameInfoPage }]);
     }
 
     wordsPerPageChanged() {

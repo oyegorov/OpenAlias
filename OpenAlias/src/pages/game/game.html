@@ -1,5 +1,7 @@
 <ion-header padding>
-    <ion-title>{{gameService.getActivePlayer().name}} ({{totalScore}})</ion-title>
+    <ion-navbar>
+        <ion-title>{{gameService.getActivePlayer().name}} ({{totalScore}})</ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content padding class="vertical-align-content">
     <ion-grid>
@@ -26,8 +28,6 @@
     </ion-grid>
 </ion-content>
 <ion-footer padding>
-    <button ion-button round full (click)="handleBackButton()" *ngIf="platform.is('core')">{{ 'back' | translate }}</button>
-
     <div style="width: 100%; text-align: center">
         <ion-chip>
             <ion-icon name="time" color="primary" large></ion-icon>

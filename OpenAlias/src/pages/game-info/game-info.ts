@@ -62,7 +62,7 @@ export class GameInfoPage {
     }
 
     startRound() {
-        this.navCtrl.setRoot(Game);
+        this.navCtrl.setPages([{ page: GameMenu, params: { page: Game } }, { page: Game }]);
     }
 
     finishGame() {
